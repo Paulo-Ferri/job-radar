@@ -1,0 +1,118 @@
+{
+  "comments": "Search results come 20 to a page. Pass ?page=2, ?page=3 and so on for more; there is no cursor on search. Cursor pagination (nextCursor) is only on /jobs/api, the browse feed. 13/03/2026: The API has been updated to include the companySlug field in the response.",
+  "updatedAt": 1794238166,
+  "offset": 0,
+  "limit": 20,
+  "totalCount": 3195,
+  "jobs": [
+    {
+      "title": "Senior Full-stack developer (.Net & Angular) #D003",
+      "excerpt": "Duties & Responsibilities • Design and implement back-end services using .",
+      "companyName": "TAMEM",
+      "companySlug": "tamem",
+      "companyLogo": "https://cdn-images.himalayas.app/gto4cknovtoat613y6qh7lp9dc1p",
+      "employmentType": "Full Time",
+      "minSalary": null,
+      "maxSalary": null,
+      "salaryPeriod": "annual",
+      "seniority": [
+        "Senior"
+      ],
+      "currency": null,
+      "locationRestrictions": [
+        "Egypt"
+      ],
+      "timezoneRestrictions": [
+        2
+      ],
+      "categories": [
+        "Senior-Fullstack-Developer",
+        "Software-Engineer",
+        ".NET-Developer",
+        "Senior-Front-End-Developer",
+        "Backend-Engineer"
+      ],
+      "parentCategories": [
+        "Developer"
+      ],
+      "description": "<h3>Duties &amp; Responsibilities </h3><ul><li>Design and implement back-end services using .NET / ASP.NET Core (Web API) with clean, testable code.</li></ul><ul>\n<li>Build responsive, maintainable Angular front-ends (routing, state, RxJS, forms, performance).</li>\n<li>Model data and write efficient SQL Server queries, views, stored procedures, and indexes.</li>\n<li>Apply secure-by-default practices: authentication/authorization, input validation, OWASP, and secrets.</li>\n<li>Design modular architectures (DDD-inspired layering); document decisions (ADR).</li>\n<li>Integrate with internal/external systems via REST/JSON (and SOAP when required).</li>\n<li>Own code reviews, CI/CD quality gates, and observability (logging, tracing, dashboards, alerts).</li>\n<li>Collaborate with PMs, designers, QA, and DevOps; break down epics into deliverable increments.</li>\n<li>Troubleshoot production issues (query tuning, memory/CPU profiling, dependency bottlenecks).</li>\n<li>Mentor engineers, contribute to shared libraries, templates, and engineering playbooks.</li>\n</ul><h3>\n<br>Qualifications, Skills &amp; Abilities</h3><ul>\n<li>7+ years of professional software development, including 4+ years with ASP.NET Core.</li>\n<li>Proficiency in C#, ASP.NET Core Web API, dependency injection, middleware, and configuration.</li>\n<li>Strong Angular (v13+) experience: components, modules, RxJS, state management, lazy loading.</li>\n<li>Solid SQL Server skills: schema design, query tuning, indexing strateg",
+      "pubDate": 1794238166,
+      "expiryDate": 1799422165,
+      "applicationLink": "https://himalayas.app/companies/tamem/jobs/senior-full-stack-developer-net-angular-d003?utm_source=api",
+      "guid": "https://himalayas.app/companies/tamem/jobs/senior-full-stack-developer-net-angular-d003"
+    },
+    {
+      "title": "Senior Drupal Developer (Freelance)",
+      "excerpt": "RequirementsMust Have• 5+ years of hands-on experience in Drupal 8+, with a strong showcase of your work.",
+      "companyName": "ITC2",
+      "companySlug": "itc2",
+      "companyLogo": "https://cdn-images.himalayas.app/2lwxif3jhbdwhppggwvej005t21s",
+      "employmentType": "Contractor",
+      "minSalary": null,
+      "maxSalary": null,
+      "salaryPeriod": "annual",
+      "seniority": [
+        "Senior"
+      ],
+      "currency": null,
+      "locationRestrictions": [
+        "Vietnam"
+      ],
+      "timezoneRestrictions": [
+        7
+      ],
+      "categories": [
+        "Drupal-Developer",
+        "Web-Developer",
+        "PHP-Developer",
+        "Front-End-Developer",
+        "Senior-Web-Developer"
+      ],
+      "parentCategories": [
+        "Developer"
+      ],
+      "description": "<h3>Requirements</h3><h3>Must Have</h3><ul>\n<li>5+ years of hands-on experience in Drupal 8+, with a strong showcase of your work.</li>\n<li>Proficiency in PHP / Typescript / React / NextJS / CSS</li>\n<li>Proficient with one MVC Framework such as Laravel / Symfony</li>\n<li>Proficient with SQL and database design</li>\n<li>Experience with GIT source control</li>\n<li>Knowledge of CI/CD workflows.</li>\n<li>Comfortable with CLI and basic linux administration, bash scripting</li>\n<li>Comfortable with K8s / docker compose / docker</li>\n<li>Experience with Aliyun / AWS and cloud based infrastructure</li>\n</ul><h3>Nice to Have</h3><ul>\n<li>Any additional programing language is a plus</li>\n<li>Involvement in the Drupal community is a big plus</li>\n<li>Experience in working with WeChat API</li>\n</ul><h3>Responsibilities</h3><ul>\n<li>Producing clean, efficient code based on specifications and industry best practices</li>\n<li>Accountable for working with outside data sources and APIs</li>\n<li>Ensuring the performance, quality, and responsiveness of applications</li>\n<li>Understanding of continuous integration / continuous delivery concepts and the ability to troubleshoot related issues</li>\n<li>Accountable for working on code reviewing, bug fixing and assisting QA/QC Team</li>\n<li>Learning new technologies when required</li>\n<li>Actively participate in projects and understanding requirements</li>\n<li>Providing time estimates for new initiatives</li>\n<li>Accountable for unit tests implement",
+      "pubDate": 1794238052,
+      "expiryDate": 1799422050,
+      "applicationLink": "https://himalayas.app/companies/itc2/jobs/senior-drupal-developer-freelance?utm_source=api",
+      "guid": "https://himalayas.app/companies/itc2/jobs/senior-drupal-developer-freelance"
+    },
+    {
+      "title": "Web Developer: Remote & 4.5 Day Week (read fully before applying)",
+      "excerpt": "This is a remote position. REMOTE - MEXICO PLEASE DO NOT apply for this job without reading everything below.",
+      "companyName": "Spotlight Marketing + Branding",
+      "companySlug": "spotlight-marketing-branding",
+      "companyLogo": "",
+      "employmentType": "Full Time",
+      "minSalary": 1200,
+      "maxSalary": 1500,
+      "salaryPeriod": "monthly",
+      "seniority": [
+        "Mid-level"
+      ],
+      "currency": "USD",
+      "locationRestrictions": [
+        "Mexico"
+      ],
+      "timezoneRestrictions": [
+        -8,
+        -7,
+        -6,
+        -5
+      ],
+      "categories": [
+        "Web-Developer",
+        "WordPress-Developer",
+        "Front-End-Developer"
+      ],
+      "parentCategories": [
+        "Developer"
+      ],
+      "description": "<h3>This is a remote position.</h3><h3>REMOTE - MEXICO </h3><div>PLEASE DO NOT apply for this job without reading everything below.<h3>Summary:</h3>\n<p>Do you enjoy programming? Do you love the idea of furiously typing lines of code that will ultimately bring a client’s website to life? Do you speak in CSS and HTML more than your own native language? If so, this may be the job you’ve been looking for!</p>\n<p>We are looking for a Wordpress web developer to help us take website designs and program them into a functioning Wordpress website for our clients. We want to provide the latest in UX/UI design and functionality, which means we’ll lean on you to make it happen.</p>\n<h3>Who We Are:</h3>\n<p>We are Spotlight Branding - one of a few internet marketing companies NOT focused on SEO. We believe there is much more to the internet than where a business shows up on Google. Our services include website design, social media management, email newsletters, and more, which lets us help lawyers build a strong online brand for their firm. Rather than focusing on creating leads from Google, we are more interested in helping them build a strong brand, stay top of mind with their contacts, and increase their referrals!</p>\n<h3>Job Description:</h3>\n<p>We provide internet marketing services specifically for small law and financial firms. We’re like Yoda - we’re the guides leading lawyers through the marketing world. If that reference doesn’t make sense, watchStar Warsbefore your interview wit",
+      "pubDate": 1794231796,
+      "expiryDate": 1799415795,
+      "applicationLink": "https://himalayas.app/companies/spotlight-marketing-branding/jobs/web-developer-remote-4-5-day-week-read-fully-before-applying?utm_source=api",
+      "guid": "https://himalayas.app/companies/spotlight-marketing-branding/jobs/web-developer-remote-4-5-day-week-read-fully-before-applying"
+    }
+  ]
+}

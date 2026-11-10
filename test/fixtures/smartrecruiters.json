@@ -1,0 +1,307 @@
+{
+  "offset": 0,
+  "limit": 100,
+  "totalFound": 197,
+  "content": [
+    {
+      "id": "744000160213661",
+      "name": "Full-Stack Developer",
+      "uuid": "d4ed2376-99ef-40a2-94e8-d88c72f991b8",
+      "jobAdId": "e280e0f2-a9ea-4a4b-9e97-abe5749f9aaf",
+      "defaultJobAd": true,
+      "refNumber": "REF4575R",
+      "company": {
+        "identifier": "PSICRO",
+        "name": "PSI CRO"
+      },
+      "releasedDate": "2026-11-06T14:18:48.819Z",
+      "location": {
+        "city": "Warsaw",
+        "region": "Masovian Voivodeship",
+        "country": "pl",
+        "remote": true,
+        "hybrid": false,
+        "latitude": "52.2296756",
+        "longitude": "21.0122287",
+        "fullLocation": "Warsaw, Masovian Voivodeship, Poland"
+      },
+      "industry": {
+        "id": "pharmaceuticals",
+        "label": "Pharmaceuticals"
+      },
+      "department": {
+        "id": "8497831",
+        "label": "Milestone One"
+      },
+      "function": {
+        "id": "information_technology",
+        "label": "Information Technology"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "associate",
+        "label": "Associate"
+      },
+      "customField": [
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "pl",
+          "valueLabel": "Poland"
+        },
+        {
+          "fieldId": "5a8ea76ab60a5e06821bfc7b",
+          "fieldLabel": "Brands",
+          "valueId": "2b14748d-7d09-49dc-87f5-9b85ca6a0e83",
+          "valueLabel": "Milestone One"
+        },
+        {
+          "fieldId": "5a8ea76ab60a5e06821bfc7c",
+          "fieldLabel": "Department",
+          "valueId": "8497831",
+          "valueLabel": "Milestone One"
+        },
+        {
+          "fieldId": "5b615e106d8bc52f977e9866",
+          "fieldLabel": "Job Summary",
+          "valueLabel": "If you feel it is time to make your skills and knowledge visible within a developing company with true focus on its people, then Milestone One is the right choice for you."
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/psicro/postings/744000160213661",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000160214549",
+      "name": "Full-Stack Developer",
+      "uuid": "94036d53-164d-4f24-bdca-3375c3cce81a",
+      "jobAdId": "d803b989-d08d-4539-951b-7969dfa29027",
+      "defaultJobAd": true,
+      "refNumber": "REF4576H",
+      "company": {
+        "identifier": "PSICRO",
+        "name": "PSI CRO"
+      },
+      "releasedDate": "2026-11-06T14:17:09.047Z",
+      "location": {
+        "city": "Rio de Janeiro",
+        "region": "RJ",
+        "country": "br",
+        "remote": true,
+        "hybrid": false,
+        "latitude": "-22.9068467",
+        "longitude": "-43.1728965",
+        "fullLocation": "Rio de Janeiro, RJ, Brazil"
+      },
+      "industry": {
+        "id": "pharmaceuticals",
+        "label": "Pharmaceuticals"
+      },
+      "department": {
+        "id": "8497831",
+        "label": "Milestone One"
+      },
+      "function": {
+        "id": "information_technology",
+        "label": "Information Technology"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "associate",
+        "label": "Associate"
+      },
+      "customField": [
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "br",
+          "valueLabel": "Brazil"
+        },
+        {
+          "fieldId": "5a8ea76ab60a5e06821bfc7b",
+          "fieldLabel": "Brands",
+          "valueId": "2b14748d-7d09-49dc-87f5-9b85ca6a0e83",
+          "valueLabel": "Milestone One"
+        },
+        {
+          "fieldId": "5a8ea76ab60a5e06821bfc7c",
+          "fieldLabel": "Department",
+          "valueId": "8497831",
+          "valueLabel": "Milestone One"
+        },
+        {
+          "fieldId": "5b615e106d8bc52f977e9866",
+          "fieldLabel": "Job Summary",
+          "valueLabel": "If you feel it is time to make your skills and knowledge visible within a developing company with true focus on its people, then Milestone One is the right choice for you."
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/psicro/postings/744000160214549",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000160712740",
+      "name": "Regulatory Officer",
+      "uuid": "d9682b77-66bb-44a1-a2b4-adee32237dc7",
+      "jobAdId": "21c06ffc-8c15-4fc7-85a1-f94650090701",
+      "defaultJobAd": true,
+      "refNumber": "REF4555U",
+      "company": {
+        "identifier": "PSICRO",
+        "name": "PSI CRO"
+      },
+      "releasedDate": "2026-11-09T19:53:03.109Z",
+      "location": {
+        "city": "Buenos Aires",
+        "region": "Buenos Aires",
+        "country": "ar",
+        "remote": false,
+        "hybrid": true,
+        "latitude": "-34.6036739",
+        "longitude": "-58.3821215",
+        "fullLocation": "Buenos Aires, Buenos Aires, Argentina"
+      },
+      "industry": {
+        "id": "pharmaceuticals",
+        "label": "Pharmaceuticals"
+      },
+      "department": {
+        "id": "1063646",
+        "label": "Regulatory"
+      },
+      "function": {
+        "id": "other",
+        "label": "Other"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "associate",
+        "label": "Associate"
+      },
+      "customField": [
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "ar",
+          "valueLabel": "Argentina"
+        },
+        {
+          "fieldId": "5a8ea76ab60a5e06821bfc7b",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "PSI CRO"
+        },
+        {
+          "fieldId": "5a8ea76ab60a5e06821bfc7c",
+          "fieldLabel": "Department",
+          "valueId": "1063646",
+          "valueLabel": "Regulatory"
+        },
+        {
+          "fieldId": "5b615e106d8bc52f977e9866",
+          "fieldLabel": "Job Summary",
+          "valueLabel": "If you feel it is time to make your skills and knowledge visible within a growing company with true focus on its people, then PSI is the right choice for you."
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/psicro/postings/744000160712740",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000160712364",
+      "name": "Regulatory Officer",
+      "uuid": "aa15be3c-4648-49ff-907e-c91d1581fbea",
+      "jobAdId": "425d93e7-1ba7-4987-b98b-41eeb19a184d",
+      "defaultJobAd": true,
+      "refNumber": "REF4554R",
+      "company": {
+        "identifier": "PSICRO",
+        "name": "PSI CRO"
+      },
+      "releasedDate": "2026-11-09T19:52:52.853Z",
+      "location": {
+        "city": "São Paulo",
+        "region": "SP",
+        "country": "br",
+        "remote": true,
+        "hybrid": false,
+        "latitude": "-23.5557714",
+        "longitude": "-46.6395571",
+        "fullLocation": "São Paulo, SP, Brazil"
+      },
+      "industry": {
+        "id": "pharmaceuticals",
+        "label": "Pharmaceuticals"
+      },
+      "department": {
+        "id": "1063646",
+        "label": "Regulatory"
+      },
+      "function": {
+        "id": "other",
+        "label": "Other"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "associate",
+        "label": "Associate"
+      },
+      "customField": [
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "br",
+          "valueLabel": "Brazil"
+        },
+        {
+          "fieldId": "5a8ea76ab60a5e06821bfc7b",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "PSI CRO"
+        },
+        {
+          "fieldId": "5a8ea76ab60a5e06821bfc7c",
+          "fieldLabel": "Department",
+          "valueId": "1063646",
+          "valueLabel": "Regulatory"
+        },
+        {
+          "fieldId": "5b615e106d8bc52f977e9866",
+          "fieldLabel": "Job Summary",
+          "valueLabel": "If you feel it is time to make your skills and knowledge visible within a growing company with true focus on its people, then PSI is the right choice for you."
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/psicro/postings/744000160712364",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    }
+  ]
+}

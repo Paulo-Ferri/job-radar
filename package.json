@@ -1,0 +1,26 @@
+{
+  "name": "job-radar",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Coletor diário de vagas de frontend a partir de ATS e agregadores",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "collect": "tsx src/main.ts",
+    "summary": "tsx scripts/summary.ts",
+    "probe": "tsx scripts/probe.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

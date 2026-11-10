@@ -1,0 +1,28 @@
+{
+  "window_hours": 72,
+  "title": {
+    "frontend_terms": ["frontend", "front-end", "front end", "react", "reactjs", "next.js", "nextjs", "ui engineer", "web engineer", "fullstack", "full-stack", "full stack"],
+    "strong_frontend_terms": ["frontend", "front-end", "front end", "react", "reactjs", "ui engineer"],
+    "generic_titles": ["software engineer", "product engineer", "software developer", "web developer", "desenvolvedor", "desenvolvedora", "pessoa desenvolvedora", "engenheiro de software", "engenheira de software"],
+    "generic_requires_description_terms": ["react", "reactjs", "typescript"],
+    "cut_always": {
+      "level": ["staff", "principal", "lead", "líder", "manager", "head", "director", "architect", "arquiteto", "arquiteta", "intern", "internship", "estágio", "estagiário", "estagiária", "junior", "júnior", "jr"],
+      "stack": ["react native", "angular", "java", ".net", "asp.net", "dotnet", "php", "python", "ruby", "golang", "kotlin", "wordpress", "salesforce", "ios", "android", "flutter"]
+    },
+    "cut_unless_strong_frontend": ["data", "mobile", "qa", "backend", "back-end", "back end", "devops", "sre"]
+  },
+  "location": {
+    "brazil_terms": ["brazil", "brasil"],
+    "brazil_places": ["são paulo", "rio de janeiro", "belo horizonte", "curitiba", "porto alegre", "florianópolis", "recife", "campinas", "brasília", "salvador", "fortaleza"],
+    "latam_terms": ["latam", "latin america", "américa latina", "latinoamérica", "south america", "américa do sul"],
+    "latam_places": ["central america", "argentina", "mexico", "méxico", "colombia", "chile", "peru", "uruguay", "paraguay", "bolivia", "ecuador", "venezuela", "costa rica", "panama", "guatemala", "dominican republic", "el salvador", "honduras", "nicaragua", "buenos aires", "bogotá", "medellín", "santiago", "lima", "montevideo", "mexico city", "guadalajara"],
+    "americas_terms": ["americas", "américas"],
+    "worldwide_terms": ["worldwide", "world-wide", "anywhere", "global"],
+    "restricted_terms": ["united states", "usa", "u.s.", "north america", "canada", "united kingdom", "england", "scotland", "wales", "ireland", "europe", "european union", "emea", "apac", "asia", "africa", "middle east", "australia", "new zealand", "germany", "france", "spain", "portugal", "italy", "netherlands", "belgium", "switzerland", "austria", "sweden", "norway", "denmark", "finland", "iceland", "poland", "czech republic", "czechia", "romania", "bulgaria", "hungary", "greece", "ukraine", "turkey", "türkiye", "serbia", "croatia", "estonia", "latvia", "lithuania", "slovakia", "slovenia", "luxembourg", "cyprus", "malta", "israel", "united arab emirates", "uae", "dubai", "saudi arabia", "qatar", "egypt", "nigeria", "kenya", "ghana", "south africa", "morocco", "india", "pakistan", "bangladesh", "sri lanka", "nepal", "china", "hong kong", "taiwan", "japan", "south korea", "korea", "singapore", "malaysia", "indonesia", "philippines", "vietnam", "thailand", "armenia", "kazakhstan", "california", "texas", "florida", "new york", "new jersey", "massachusetts", "illinois", "colorado", "washington", "oregon", "arizona", "utah", "nevada", "virginia", "north carolina", "pennsylvania", "ohio", "michigan", "minnesota", "tennessee", "maryland", "san francisco", "los angeles", "san diego", "seattle", "austin", "dallas", "houston", "boston", "chicago", "denver", "atlanta", "miami", "bay area", "toronto", "vancouver", "montreal", "london", "manchester", "dublin", "berlin", "munich", "hamburg", "paris", "amsterdam", "madrid", "barcelona", "lisbon", "lisboa", "porto", "warsaw", "krakow", "prague", "stockholm", "copenhagen", "oslo", "helsinki", "zurich", "vienna", "brussels", "tel aviv", "bangalore", "bengaluru", "hyderabad", "pune", "mumbai", "delhi", "tokyo", "sydney", "melbourne"],
+    "restricted_case_sensitive": ["US", "USA", "UK", "EU", "NYC", "SF"]
+  },
+  "himalayas": {
+    "search_terms": ["frontend", "front end", "react", "full stack", "fullstack", "next.js", "software engineer"],
+    "max_pages_per_term": 15
+  }
+}

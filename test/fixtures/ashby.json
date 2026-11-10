@@ -1,0 +1,250 @@
+{
+  "apiVersion": "1",
+  "jobs": [
+    {
+      "id": "acf80ca2-7073-49aa-ab4a-7064f852d94f",
+      "title": "Senior Software Engineer - Frontend - Consumer",
+      "department": "Engineering",
+      "team": "Frontend",
+      "employmentType": "FullTime",
+      "location": "Poland",
+      "shouldDisplayCompensationOnJobPostings": false,
+      "secondaryLocations": [
+        {
+          "location": "Peru",
+          "address": {
+            "postalAddress": {
+              "addressCountry": "Peru"
+            }
+          }
+        },
+        {
+          "location": "Latvia",
+          "address": {
+            "postalAddress": {
+              "addressCountry": "Latvia"
+            }
+          }
+        },
+        {
+          "location": "Colombia",
+          "address": {
+            "postalAddress": {
+              "addressCountry": "Colombia"
+            }
+          }
+        }
+      ],
+      "publishedAt": "2026-10-28T16:33:18.188+00:00",
+      "isListed": true,
+      "isRemote": true,
+      "workplaceType": "Remote",
+      "address": {
+        "postalAddress": {
+          "addressCountry": "Poland"
+        }
+      },
+      "jobUrl": "https://jobs.ashbyhq.com/kraken.com/acf80ca2-7073-49aa-ab4a-7064f852d94f",
+      "applyUrl": "https://jobs.ashbyhq.com/kraken.com/acf80ca2-7073-49aa-ab4a-7064f852d94f/application",
+      "descriptionPlain": "BUILDING THE FUTURE OF OPEN FINANCE\n\n\nPayward - the parent company behind Kraken, NinjaTrader, Breakout,  xStocks, Payward Services and CF Benchmarks - has spent the last 15 years building one of the most modern and globally accessible financial infrastructure platforms in the industry, built to advance an open, global financial system.\n\n\n\n\nTHE TEAM\n\nFounded in 2011, Kraken is one of the world's longest-standing crypto platforms, trusted by over 10 million individuals and institutions across the globe. It offers spot trading, margin, futures, staking, and OTC services, with products built for both individual investors and institutional clients.\n\nThe Consumer team owns the Kraken app experience used by millions of traders and crypto newcomers worldwide, the product that turns someone's first crypto curiosity into a long-term relationship with Kraken. We build the interfaces people actually use to buy, sell, manage their portfolio, and interact with their assets. Our stack is React on web and React Native on mobile, and we ship fast, measure everything, and iterate based on real user behaviour. We work agile, globally distributed, and we care as much about why we build something as how we build it.\n\nWe're looking for a world-class Senior Frontend Engineer to join our product-minded engineering team: we care about customer problems, measurable outcomes, frontend craft, and fast iteration. We work across web and mobile surfaces, partner closely with Product, Design, Data, and Pla",
+      "compensation": {
+        "compensationTierSummary": null,
+        "scrapeableCompensationSalarySummary": null,
+        "compensationTiers": [],
+        "summaryComponents": []
+      }
+    },
+    {
+      "id": "c6a90178-82d7-414e-ad74-69496b44d3c4",
+      "title": "Engineering Manager - Frontend - Krak",
+      "department": "Engineering",
+      "team": "Frontend",
+      "employmentType": "FullTime",
+      "location": "Canada",
+      "shouldDisplayCompensationOnJobPostings": false,
+      "secondaryLocations": [
+        {
+          "location": "Uruguay",
+          "address": {
+            "postalAddress": {
+              "addressCountry": "Uruguay"
+            }
+          }
+        },
+        {
+          "location": "Costa Rica",
+          "address": {
+            "postalAddress": {
+              "addressCountry": "Costa Rica"
+            }
+          }
+        },
+        {
+          "location": "Colombia",
+          "address": {
+            "postalAddress": {
+              "addressCountry": "Colombia"
+            }
+          }
+        }
+      ],
+      "publishedAt": "2026-11-02T13:18:57.157+00:00",
+      "isListed": true,
+      "isRemote": true,
+      "workplaceType": "Remote",
+      "address": {
+        "postalAddress": {
+          "addressCountry": "Canada"
+        }
+      },
+      "jobUrl": "https://jobs.ashbyhq.com/kraken.com/c6a90178-82d7-414e-ad74-69496b44d3c4",
+      "applyUrl": "https://jobs.ashbyhq.com/kraken.com/c6a90178-82d7-414e-ad74-69496b44d3c4/application",
+      "descriptionPlain": "BUILDING THE FUTURE OF OPEN FINANCE\n\n\nPayward - the parent company behind Kraken, NinjaTrader, Breakout,  xStocks, Payward Services and CF Benchmarks - has spent the last 15 years building one of the most modern and globally accessible financial infrastructure platforms in the industry, built to advance an open, global financial system.\n\n\n\n\nTHE TEAM\n\nFounded in 2011, Kraken is one of the world's longest-standing crypto platforms, trusted by over 10 million individuals and institutions across the globe. It offers spot trading, margin, futures, staking, and OTC services, with products built for both individual investors and institutional clients.\n\nWe’re looking for a hands-on Engineering Manager to lead a cross-functional Consumer pod focused on building and scaling core Krak experiences. This leader will guide a team of Frontend (React / React Native) and Backend (Rust) engineers to deliver seamless, performant user experiences across Kraken’s primary consumer surfaces.\n\nYou’ll work closely with Product, Design, and other Engineering Managers to ensure Krak delivers exceptional UX, technical quality, and operational reliability. This role is an opportunity to shape high-impact, consumer-facing functionality used daily by a global user base.\n\n\n\n\nTHE OPPORTUNITY\n\n - Lead a cross-functional team of frontend and backend engineers responsible for core Krak consumer experiences.\n\n - Own the end-to-end UX for key Krak features across mobile and client platforms.\n\n - Guide the deliver",
+      "compensation": {
+        "compensationTierSummary": null,
+        "scrapeableCompensationSalarySummary": null,
+        "compensationTiers": [],
+        "summaryComponents": []
+      }
+    },
+    {
+      "id": "993557d9-7482-4f63-aae0-5817998b2368",
+      "title": "Senior Analytics Engineer - Finance",
+      "department": "Engineering",
+      "team": "Data Engineering",
+      "employmentType": "FullTime",
+      "location": "United States",
+      "shouldDisplayCompensationOnJobPostings": true,
+      "secondaryLocations": [],
+      "publishedAt": "2026-10-16T10:44:16.327+00:00",
+      "isListed": true,
+      "isRemote": true,
+      "workplaceType": "Remote",
+      "address": {
+        "postalAddress": {
+          "addressCountry": "United States"
+        }
+      },
+      "jobUrl": "https://jobs.ashbyhq.com/kraken.com/993557d9-7482-4f63-aae0-5817998b2368",
+      "applyUrl": "https://jobs.ashbyhq.com/kraken.com/993557d9-7482-4f63-aae0-5817998b2368/application",
+      "descriptionPlain": "BUILDING THE FUTURE OF OPEN FINANCE\n\n\nPayward - the parent company behind Kraken, NinjaTrader, Breakout,  xStocks, Payward Services and CF Benchmarks - has spent the last 15 years building one of the most modern and globally accessible financial infrastructure platforms in the industry, built to advance an open, global financial system.\n\n\n\n\nTHE TEAM\n\nFounded in 2011, Kraken is one of the world's longest-standing crypto platforms, trusted by over 10 million individuals and institutions across the globe. It offers spot trading, margin, futures, staking, and OTC services, with products built for both individual investors and institutional clients.\n\n \n\nWe’re looking for a Senior Analytics Engineer to join Kraken’s Finance Data Eng & Analytics team within Data Platform. You’ll build trusted financial data products, using automation and AI to reduce manual work and improve the close process.\n\nWorking at the intersection of data engineering and accounting, you’ll turn complex financial data into reliable pipelines, models and automated reconciliations. You’ll use AI-assisted tools to accelerate development and investigations, keeping financial outputs tested and traceable.\n\n \n\n\nTHE OPPORTUNITY\n\n - You’ll work closely with Data Engineers, Finance and Platform Accounting to improve reporting and decision-making. Clear communication and collaboration will help you agree priorities, explain findings and drive adoption.\n\n - Partner with Finance to understand workflows, identify pain poin",
+      "compensation": {
+        "compensationTierSummary": "$110.4K – $220.8K • Offers Equity • Offers Bonus",
+        "scrapeableCompensationSalarySummary": "$110.4K - $220.8K",
+        "compensationTiers": [
+          {
+            "id": "2d710194-bfc3-4911-b0f5-06f84e390b5b",
+            "tierSummary": "$110.4K – $220.8K • Offers Equity • Offers Bonus",
+            "title": null,
+            "additionalInformation": null,
+            "components": [
+              {
+                "id": "6474018b-6a68-4e3a-9046-aa409c5e4c31",
+                "summary": "$110.4K – $220.8K",
+                "compensationType": "Salary",
+                "interval": "1 YEAR",
+                "currencyCode": "USD",
+                "minValue": 110400,
+                "maxValue": 220800
+              },
+              {
+                "id": "c2cd3c08-36f5-4461-a00d-a481b5872b88",
+                "summary": "Offers Equity",
+                "compensationType": "EquityPercentage",
+                "interval": "NONE",
+                "currencyCode": null,
+                "minValue": null,
+                "maxValue": null
+              },
+              {
+                "id": "a7dccf30-f1a4-4952-a1f7-a6ad3c77f7bc",
+                "summary": "Offers Bonus",
+                "compensationType": "Bonus",
+                "interval": "1 YEAR",
+                "currencyCode": "USD",
+                "minValue": null,
+                "maxValue": null
+              }
+            ]
+          }
+        ],
+        "summaryComponents": [
+          {
+            "compensationType": "Salary",
+            "interval": "1 YEAR",
+            "currencyCode": "USD",
+            "minValue": 110400,
+            "maxValue": 220800
+          },
+          {
+            "compensationType": "EquityPercentage",
+            "interval": "NONE",
+            "currencyCode": null,
+            "minValue": null,
+            "maxValue": null
+          },
+          {
+            "compensationType": "Bonus",
+            "interval": "1 YEAR",
+            "currencyCode": "USD",
+            "minValue": null,
+            "maxValue": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "f82dbb89-b7da-4130-b690-eb1ca4aeaa50",
+      "title": "Senior Analytics Engineer - Finance",
+      "department": "Engineering",
+      "team": "Data Engineering",
+      "employmentType": "FullTime",
+      "location": "Brazil",
+      "shouldDisplayCompensationOnJobPostings": false,
+      "secondaryLocations": [
+        {
+          "location": "Peru",
+          "address": {
+            "postalAddress": {
+              "addressCountry": "Peru"
+            }
+          }
+        },
+        {
+          "location": "Colombia",
+          "address": {
+            "postalAddress": {
+              "addressCountry": "Colombia"
+            }
+          }
+        },
+        {
+          "location": "Argentina",
+          "address": {
+            "postalAddress": {
+              "addressCountry": "Argentina"
+            }
+          }
+        }
+      ],
+      "publishedAt": "2026-10-16T10:44:14.133+00:00",
+      "isListed": true,
+      "isRemote": true,
+      "workplaceType": "Remote",
+      "address": {
+        "postalAddress": {
+          "addressCountry": "Brazil"
+        }
+      },
+      "jobUrl": "https://jobs.ashbyhq.com/kraken.com/f82dbb89-b7da-4130-b690-eb1ca4aeaa50",
+      "applyUrl": "https://jobs.ashbyhq.com/kraken.com/f82dbb89-b7da-4130-b690-eb1ca4aeaa50/application",
+      "descriptionPlain": "BUILDING THE FUTURE OF OPEN FINANCE\n\n\nPayward - the parent company behind Kraken, NinjaTrader, Breakout,  xStocks, Payward Services and CF Benchmarks - has spent the last 15 years building one of the most modern and globally accessible financial infrastructure platforms in the industry, built to advance an open, global financial system.\n\n\n\n\nTHE TEAM\n\nFounded in 2011, Kraken is one of the world's longest-standing crypto platforms, trusted by over 10 million individuals and institutions across the globe. It offers spot trading, margin, futures, staking, and OTC services, with products built for both individual investors and institutional clients.\n\n \n\nWe’re looking for a Senior Analytics Engineer to join Kraken’s Finance Data Eng & Analytics team within Data Platform. You’ll build trusted financial data products, using automation and AI to reduce manual work and improve the close process.\n\nWorking at the intersection of data engineering and accounting, you’ll turn complex financial data into reliable pipelines, models and automated reconciliations. You’ll use AI-assisted tools to accelerate development and investigations, keeping financial outputs tested and traceable.\n\n \n\n\nTHE OPPORTUNITY\n\n - You’ll work closely with Data Engineers, Finance and Platform Accounting to improve reporting and decision-making. Clear communication and collaboration will help you agree priorities, explain findings and drive adoption.\n\n - Partner with Finance to understand workflows, identify pain poin",
+      "compensation": {
+        "compensationTierSummary": null,
+        "scrapeableCompensationSalarySummary": null,
+        "compensationTiers": [],
+        "summaryComponents": []
+      }
+    }
+  ]
+}

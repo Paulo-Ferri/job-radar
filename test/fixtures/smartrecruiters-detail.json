@@ -1,0 +1,103 @@
+{
+  "id": "744000160213661",
+  "name": "Full-Stack Developer",
+  "uuid": "d4ed2376-99ef-40a2-94e8-d88c72f991b8",
+  "jobId": "173dbf0f-421e-4e0d-b5d5-85f890108fa8",
+  "jobAdId": "e280e0f2-a9ea-4a4b-9e97-abe5749f9aaf",
+  "defaultJobAd": true,
+  "refNumber": "REF4575R",
+  "company": {
+    "name": "PSI CRO",
+    "identifier": "PSICRO"
+  },
+  "location": {
+    "city": "Warsaw",
+    "region": "Masovian Voivodeship",
+    "country": "pl",
+    "remote": true,
+    "hybrid": false,
+    "latitude": "52.2296756",
+    "longitude": "21.0122287",
+    "fullLocation": "Warsaw, Masovian Voivodeship, Poland"
+  },
+  "customField": [
+    {
+      "fieldId": "COUNTRY",
+      "fieldLabel": "Country/Region",
+      "valueId": "pl",
+      "valueLabel": "Poland"
+    },
+    {
+      "fieldId": "5b615e106d8bc52f977e9866",
+      "fieldLabel": "Job Summary",
+      "valueLabel": "If you feel it is time to make your skills and knowledge visible within a developing company with true focus on its people, then Milestone One is the right choice for you."
+    },
+    {
+      "fieldId": "5a8ea76ab60a5e06821bfc7b",
+      "fieldLabel": "Brands",
+      "valueId": "2b14748d-7d09-49dc-87f5-9b85ca6a0e83",
+      "valueLabel": "Milestone One"
+    },
+    {
+      "fieldId": "5a8ea76ab60a5e06821bfc7c",
+      "fieldLabel": "Department",
+      "valueId": "8497831",
+      "valueLabel": "Milestone One"
+    }
+  ],
+  "releasedDate": "2026-11-06T14:18:48.819Z",
+  "creator": {
+    "name": "",
+    "avatarUrl": ""
+  },
+  "postingUrl": "https://jobs.smartrecruiters.com/PSICRO/744000160213661-full-stack-developer",
+  "applyUrl": "https://jobs.smartrecruiters.com/PSICRO/744000160213661-full-stack-developer?oga=true",
+  "referralUrl": "https://jobs.smartrecruiters.com/external-referrals/company/PSICRO/publication/d4ed2376-99ef-40a2-94e8-d88c72f991b8?dcr_ci=PSICRO",
+  "jobAd": {
+    "sections": {
+      "companyDescription": {
+        "title": "Company Description",
+        "text": "<p>Milestone One is a Site Enabling Services organization with global headquarters in Zug, Switzerland. We understand what clinical study sites need and our overall mission is to support sites in stronger study delivery.</p>"
+      },
+      "jobDescription": {
+        "title": "Job Description",
+        "text": "<p>The Full-Stack Developer will design, build, and maintain the internal platforms, applications, and integrations that run Milestone One’s business. Our applications have a React/TypeScript front end, an API layer, and a database backend, hosted on Azure and integrated with Microsoft 365. We work data-first: we design and document the data structure, build the API from that specification, and then build the front end. You will work in a small team alongside AI coding agents, with security, data protection, and documented testing built into how we deliver.</p><p><strong>Role responsibilities:"
+      },
+      "qualifications": {
+        "title": "Qualifications",
+        "text": "<p>· Professional experience building web applications with React/TypeScript and a backend language such as C# / .NET (we welcome both experienced and early-career developers)</p><p>· SQL — schema design, data modelling, and writing efficient queries</p><p>· REST API design, authentication and authorization (Entra ID, OAuth 2.0 / OpenID Connect)</p><p>· Git branching, pull requests, and code review; CI/CD pipelines (GitHub Actions or Azure DevOps)</p><p>· Azure fundamentals — App Service, Azure SQL, Blob Storage, Key Vault, Managed Identity</p><p>· Secure coding practices (e.g. OWASP Top 10) a"
+      },
+      "additionalInformation": {
+        "title": "Additional Information",
+        "text": "<p>If you feel it is time to make your skills and knowledge visible within a developing company with true focus on its people, then Milestone One is the right choice for you.</p>"
+      }
+    }
+  },
+  "active": true,
+  "visibility": "PUBLIC",
+  "industry": {
+    "id": "pharmaceuticals",
+    "label": "Pharmaceuticals"
+  },
+  "function": {
+    "id": "information_technology",
+    "label": "Information Technology"
+  },
+  "department": {
+    "id": 8497831,
+    "label": "Milestone One"
+  },
+  "experienceLevel": {
+    "id": "associate",
+    "label": "Associate"
+  },
+  "typeOfEmployment": {
+    "id": "permanent",
+    "label": "Full-time"
+  },
+  "language": {
+    "code": "en",
+    "label": "English",
+    "labelNative": "English (US)"
+  }
+}
