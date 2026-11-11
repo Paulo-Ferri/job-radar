@@ -2,7 +2,10 @@ name: collect
 
 on:
   schedule:
-    - cron: "17 10 * * *" # 07:17 em Brasília
+    - cron: "17 5 * * *"   # 02:17 em Brasília
+    - cron: "17 7 * * *"   # 04:17
+    - cron: "17 9 * * *"   # 06:17
+    - cron: "47 10 * * *"  # 07:47
   workflow_dispatch:
 
 permissions:
