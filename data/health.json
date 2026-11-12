@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T15:57:25.798Z",
+  "generated_at": "2026-11-12T17:37:01.138Z",
   "boards": {
     "greenhouse:engine": {
       "name": "Engine",
@@ -7,7 +7,7 @@
       "jobs": 74,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:canonical": {
       "name": "Canonical",
@@ -15,7 +15,7 @@
       "jobs": 316,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:lumimeds": {
       "name": "Lumimeds",
@@ -23,7 +23,7 @@
       "jobs": 25,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:vtex": {
       "name": "VTEX",
@@ -31,7 +31,7 @@
       "jobs": 33,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:arenaim": {
       "name": "Arena.im",
@@ -39,15 +39,15 @@
       "jobs": 12,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:gitlab": {
       "name": "GitLab",
       "ok": true,
-      "jobs": 259,
+      "jobs": 256,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:gympass": {
       "name": "Wellhub",
@@ -55,7 +55,7 @@
       "jobs": 86,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:clara": {
       "name": "Clara",
@@ -63,7 +63,7 @@
       "jobs": 162,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:ilia": {
       "name": "ília",
@@ -71,15 +71,15 @@
       "jobs": 12,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:monks": {
       "name": "Monks",
       "ok": true,
-      "jobs": 338,
+      "jobs": 339,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:coinbase": {
       "name": "Coinbase",
@@ -87,15 +87,15 @@
       "jobs": 271,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:brex": {
       "name": "Brex",
       "ok": true,
-      "jobs": 284,
+      "jobs": 283,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:vercel": {
       "name": "Vercel",
@@ -103,15 +103,15 @@
       "jobs": 87,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:grafanalabs": {
       "name": "Grafana Labs",
       "ok": true,
-      "jobs": 153,
+      "jobs": 155,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:sezzle": {
       "name": "Sezzle",
@@ -119,7 +119,7 @@
       "jobs": 271,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:jusbrasil": {
       "name": "Jusbrasil",
@@ -127,15 +127,15 @@
       "jobs": 20,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:rdstation": {
       "name": "RD Station",
       "ok": true,
-      "jobs": 5,
+      "jobs": 6,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:cloudbeds": {
       "name": "Cloudbeds",
@@ -143,7 +143,7 @@
       "jobs": 39,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:yalochatinc": {
       "name": "Yalo",
@@ -151,7 +151,7 @@
       "jobs": 7,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:cobre": {
       "name": "Cobre",
@@ -159,7 +159,7 @@
       "jobs": 17,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:kardfinancialinc": {
       "name": "Kard Financial",
@@ -167,7 +167,7 @@
       "jobs": 8,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:alphasights": {
       "name": "AlphaSights",
@@ -175,15 +175,15 @@
       "jobs": 64,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:encora10": {
       "name": "Encora",
       "ok": true,
-      "jobs": 343,
+      "jobs": 344,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:moduscreate": {
       "name": "Modus Create",
@@ -191,7 +191,7 @@
       "jobs": 19,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:amplemarket": {
       "name": "Amplemarket",
@@ -199,7 +199,7 @@
       "jobs": 18,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:aestudio": {
       "name": "AE Studio",
@@ -207,7 +207,7 @@
       "jobs": 7,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:thrivecart": {
       "name": "ThriveCart",
@@ -215,23 +215,23 @@
       "jobs": 8,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:coderoad": {
       "name": "CodeRoad",
       "ok": true,
-      "jobs": 29,
+      "jobs": 31,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "greenhouse:arcoeducacao": {
       "name": "Arco Educação",
       "ok": true,
-      "jobs": 45,
+      "jobs": 44,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "lever:caliza-financial-technologies": {
       "name": "Caliza",
@@ -239,7 +239,7 @@
       "jobs": 17,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "lever:tractian": {
       "name": "Tractian",
@@ -247,15 +247,15 @@
       "jobs": 0,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "lever:ciandt": {
       "name": "CI&T",
       "ok": true,
-      "jobs": 125,
+      "jobs": 119,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "lever:oowlish": {
       "name": "Oowlish",
@@ -263,7 +263,7 @@
       "jobs": 10,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "lever:fly": {
       "name": "Fly.io",
@@ -271,7 +271,7 @@
       "jobs": 2,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "lever:airtm": {
       "name": "Airtm",
@@ -279,7 +279,7 @@
       "jobs": 6,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:kraken.com": {
       "name": "Kraken",
@@ -287,7 +287,7 @@
       "jobs": 96,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:truelogic": {
       "name": "Truelogic",
@@ -295,7 +295,7 @@
       "jobs": 68,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:savvy": {
       "name": "Savvy",
@@ -303,7 +303,7 @@
       "jobs": 33,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:infisical": {
       "name": "Infisical",
@@ -311,23 +311,23 @@
       "jobs": 12,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:elevenlabs": {
       "name": "ElevenLabs",
       "ok": true,
-      "jobs": 130,
+      "jobs": 129,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:supabase": {
       "name": "Supabase",
       "ok": true,
-      "jobs": 77,
+      "jobs": 76,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:railway": {
       "name": "Railway",
@@ -335,7 +335,7 @@
       "jobs": 7,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:kamino": {
       "name": "Kamino",
@@ -343,7 +343,7 @@
       "jobs": 10,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:nango": {
       "name": "Nango",
@@ -351,7 +351,7 @@
       "jobs": 8,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:sardine": {
       "name": "Sardine",
@@ -359,7 +359,7 @@
       "jobs": 39,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:alternativepayments": {
       "name": "Alternative Payments",
@@ -367,7 +367,7 @@
       "jobs": 12,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:trustly": {
       "name": "Trustly",
@@ -375,7 +375,7 @@
       "jobs": 44,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:dualentry": {
       "name": "DualEntry",
@@ -383,7 +383,7 @@
       "jobs": 72,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:archy": {
       "name": "Archy",
@@ -391,7 +391,7 @@
       "jobs": 13,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:oscilar": {
       "name": "Oscilar",
@@ -399,7 +399,7 @@
       "jobs": 20,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:wagmo": {
       "name": "Wagmo",
@@ -407,7 +407,7 @@
       "jobs": 7,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "ashby:sensor-tower": {
       "name": "Sensor Tower",
@@ -415,7 +415,7 @@
       "jobs": 76,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "workable:revstar": {
       "name": "RevStar",
@@ -423,7 +423,7 @@
       "jobs": 93,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "workable:minderacraft": {
       "name": "Mindera",
@@ -431,15 +431,15 @@
       "jobs": 75,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "workable:bask-health-1": {
       "name": "Bask Health",
       "ok": true,
-      "jobs": 168,
+      "jobs": 177,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "smartrecruiters:psicro": {
       "name": "PSI CRO",
@@ -447,15 +447,15 @@
       "jobs": 191,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "smartrecruiters:applaudostudios": {
       "name": "Applaudo",
       "ok": true,
-      "jobs": 38,
+      "jobs": 39,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "recruitee:tether": {
       "name": "Tether",
@@ -463,7 +463,7 @@
       "jobs": 235,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "recruitee:curotec": {
       "name": "Curotec",
@@ -471,15 +471,15 @@
       "jobs": 11,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "himalayas": {
       "name": "Himalayas",
       "ok": true,
-      "jobs": 481,
+      "jobs": 503,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "remoteok": {
       "name": "RemoteOK",
@@ -487,15 +487,15 @@
       "jobs": 98,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     },
     "wwr": {
       "name": "We Work Remotely",
       "ok": true,
-      "jobs": 120,
+      "jobs": 125,
       "error": null,
       "consecutive_failures": 0,
-      "last_ok_at": "2026-11-12T15:57:25.798Z"
+      "last_ok_at": "2026-11-12T17:37:01.138Z"
     }
   }
 }
