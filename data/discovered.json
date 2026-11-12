@@ -10,5 +10,11 @@
     "ats": "lever",
     "id": "apryse",
     "first_seen_at": "2026-11-09T20:26:40.522Z"
+  },
+  {
+    "name": "Sprinter Health",
+    "ats": "lever",
+    "id": "sprinterhealthhttps",
+    "first_seen_at": "2026-11-12T13:48:49.568Z"
   }
 ]
