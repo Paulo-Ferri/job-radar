@@ -109,9 +109,21 @@ describe('filtro de local', () => {
   it('local restrito passa quando a descrição menciona região aceita', () => {
     expect(loc('Remote, US', 'Open to candidates in Brazil.')).toMatchObject({ pass: true, region_hint: 'brazil' });
     expect(loc('Remote, US', 'Hiring across LATAM')).toMatchObject({ pass: true, region_hint: 'latam' });
-    expect(loc('Remote, US', 'We are a global team')).toMatchObject({ pass: true, region_hint: 'unknown' });
+    expect(loc('Remote, US', 'Open to candidates across the Americas')).toMatchObject({ pass: true, region_hint: 'americas' });
+    expect(loc('Remote, US', 'Teams in South America')).toMatchObject({ pass: true, region_hint: 'latam' });
     // Cidades e países da América Latina só contam no campo de local, não na descrição.
     expect(loc('Remote, US', 'Offices in Lima, Santiago and Mexico.').pass).toBe(false);
+  });
+
+  it('worldwide/anywhere/global na descrição não salvam local restrito; no local continuam valendo', () => {
+    for (const d of ['We are a global team', 'Work from anywhere', 'Customers worldwide']) {
+      expect(loc('Remote, US', d)).toEqual({ pass: false, reason: 'region_restricted', region_hint: 'restricted' });
+    }
+    expect(loc('Remote - Europe', 'A global, remote-first company').pass).toBe(false);
+    expect(loc('Remote, US; Remote - Global')).toMatchObject({ pass: true, region_hint: 'worldwide' });
+    expect(loc('Anywhere', 'Based in the United States')).toMatchObject({ pass: true, region_hint: 'worldwide' });
+    // Sem país/região restritos no local, a descrição ainda serve para o region_hint.
+    expect(loc('Remote', 'Work from anywhere')).toMatchObject({ pass: true, region_hint: 'worldwide' });
   });
 
   it('classifica region_hint pelo local', () => {

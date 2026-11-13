@@ -13,13 +13,13 @@ const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 function allowedHint(
   text: string,
   cfg: LocationCfg,
-  withPlaces: boolean,
+  opts: { places: boolean; worldwide: boolean },
 ): Exclude<RegionHint, 'restricted' | 'unknown'> | null {
   const f = fold(text);
-  if (findTerm(f, cfg.brazil_terms) || (withPlaces && findTerm(f, cfg.brazil_places))) return 'brazil';
-  if (findTerm(f, cfg.latam_terms) || (withPlaces && findTerm(f, cfg.latam_places))) return 'latam';
+  if (findTerm(f, cfg.brazil_terms) || (opts.places && findTerm(f, cfg.brazil_places))) return 'brazil';
+  if (findTerm(f, cfg.latam_terms) || (opts.places && findTerm(f, cfg.latam_places))) return 'latam';
   if (findTerm(f, cfg.americas_terms)) return 'americas';
-  if (findTerm(f, cfg.worldwide_terms)) return 'worldwide';
+  if (opts.worldwide && findTerm(f, cfg.worldwide_terms)) return 'worldwide';
   return null;
 }
 
@@ -37,19 +37,17 @@ export function restrictedTerm(location: string, cfg: LocationCfg): string | nul
 /**
  * region_hint: primeiro pelo local (termos + cidades/países); se o local não disser nada, pela
  * descrição (só os termos gerais: Brazil, LATAM, Americas, Worldwide...).
- * "restricted" só quando o local é de fora da América Latina e nem local nem descrição
- * citam Brazil/LATAM/Americas/Worldwide/Anywhere/Global.
+ * Quando o local nomeia país/região fora da América Latina, só Brazil/LATAM/Americas na descrição
+ * salvam a vaga: "worldwide/anywhere/global" na descrição não contam (quase toda empresa se diz
+ * "global"); esses termos só valem no próprio campo de local.
  */
 export function regionHint(location: string, description: string, cfg: LocationCfg): RegionHint {
-  const fromLocation = allowedHint(location, cfg, true);
+  const fromLocation = allowedHint(location, cfg, { places: true, worldwide: true });
   if (fromLocation) return fromLocation;
-  const fromDescription = allowedHint(description, cfg, false);
   if (restrictedTerm(location, cfg)) {
-    if (!fromDescription) return 'restricted';
-    // Local restrito salvo só por "global/worldwide" na descrição: passa, mas sem afirmar região.
-    return fromDescription === 'worldwide' ? 'unknown' : fromDescription;
+    return allowedHint(description, cfg, { places: false, worldwide: false }) ?? 'restricted';
   }
-  return fromDescription ?? 'unknown';
+  return allowedHint(description, cfg, { places: false, worldwide: true }) ?? 'unknown';
 }
 
 /** Para fontes que não declaram a modalidade em campo próprio: lê do texto do local. */

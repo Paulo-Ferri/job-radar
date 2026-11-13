@@ -34,6 +34,7 @@ const byKey = <T>(entries: Array<[string, T]>) => entries.sort(([a], [b]) => (a 
 export function serializeState(state: State): string {
   const boards = Object.fromEntries(byKey(Object.entries(state.boards)));
   const jobs = byKey(Object.entries(state.jobs)).map(([, j]) =>
+    // Chaves ausentes (company/title/url das vagas cortadas pelo título) não são escritas.
     JSON.stringify({
       id: j.id,
       company: j.company,

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { filters, raw } from './helpers.js';
-import { dedupe } from '../src/dedup.js';
+import { dedupe, mergeLocations } from '../src/dedup.js';
 import { boardOfId, emptyState, isNew, updateState } from '../src/state.js';
 import { runPipeline } from '../src/pipeline.js';
 import { serializeState } from '../src/output.js';
@@ -24,20 +24,30 @@ describe('deduplicação', () => {
   it('entre fontes: ATS vence agregador com mesma empresa + título', () => {
     const ats = raw({ id: 'greenhouse:acme:1', company: 'Acme, Inc.', title: 'Senior Front-End Engineer' });
     const agg = raw({ source: 'himalayas', id: 'himalayas:acme/x', company: 'ACME', title: 'Senior Front‑End  Engineer' });
-    expect(dedupe([agg, ats]).map((j) => j.id)).toEqual(['greenhouse:acme:1']);
+    expect(dedupe([agg, ats]).map((g) => g.map((j) => j.id))).toEqual([['greenhouse:acme:1']]);
   });
 
   it('entre agregadores fica só uma; títulos diferentes ficam', () => {
     const a = raw({ source: 'himalayas', id: 'himalayas:acme/fe' });
     const b = raw({ source: 'remoteok', id: 'remoteok:9' });
     const c = raw({ source: 'wwr', id: 'wwr:acme-react', title: 'React Engineer' });
-    expect(dedupe([a, b, c]).map((j) => j.id)).toEqual(['himalayas:acme/fe', 'wwr:acme-react']);
+    expect(dedupe([a, b, c]).map((g) => g.map((j) => j.id))).toEqual([['himalayas:acme/fe'], ['wwr:acme-react']]);
   });
 
-  it('mantém vagas do mesmo ATS com o mesmo título (uma por país)', () => {
-    const a = raw({ source: 'recruitee', id: 'recruitee:acme:1' });
-    const b = raw({ source: 'recruitee', id: 'recruitee:acme:2' });
-    expect(dedupe([a, b])).toHaveLength(2);
+  it('mesma fonte: mesma empresa + mesmo título em locais diferentes formam um grupo', () => {
+    const a = raw({ source: 'recruitee', id: 'recruitee:acme:1', location: 'Brazil' });
+    const b = raw({ source: 'recruitee', id: 'recruitee:acme:2', location: 'Mexico', title: 'Frontend  engineer' });
+    const c = raw({ source: 'recruitee', id: 'recruitee:acme:3', title: 'React Engineer' });
+    const other = raw({ source: 'recruitee', board: 'recruitee:beta', id: 'recruitee:beta:1', company: 'Beta' });
+    expect(dedupe([a, b, c, other]).map((g) => g.map((j) => j.id))).toEqual([
+      ['recruitee:acme:1', 'recruitee:acme:2'],
+      ['recruitee:acme:3'],
+      ['recruitee:beta:1'],
+    ]);
+  });
+
+  it('junta locais sem repetir', () => {
+    expect(mergeLocations(['Remote, US; Brazil', 'brazil', '', 'Mexico'])).toBe('Remote, US; Brazil; Mexico');
   });
 });
 
@@ -121,6 +131,71 @@ describe('estado', () => {
       first_seen_at: daysAgo(1),
       closed_at: null,
     });
+  });
+
+  it('vaga que não passa no filtro de título fica só com id e datas', () => {
+    const keep = (title: string) => title !== 'Account Executive';
+    const fe = raw({ id: 'greenhouse:acme:1' });
+    const ae = raw({ id: 'greenhouse:acme:2', title: 'Account Executive' });
+    const s1 = updateState(emptyState(), ['greenhouse:acme'], [fe, ae], daysAgo(1), keep).state;
+    expect(s1.jobs[fe.id]).toEqual({ id: fe.id, company: 'Acme', title: 'Frontend Engineer', url: fe.url, first_seen_at: daysAgo(1), closed_at: null });
+    expect(s1.jobs[ae.id]).toEqual({ id: ae.id, first_seen_at: daysAgo(1), closed_at: null });
+    expect(JSON.parse(serializeState(s1)).jobs[1]).toEqual({ id: ae.id, first_seen_at: daysAgo(1), closed_at: null });
+
+    // Fecha e reabre normalmente, preservando first_seen_at.
+    const s2 = updateState(s1, ['greenhouse:acme'], [fe], NOW, keep).state;
+    expect(s2.jobs[ae.id]).toEqual({ id: ae.id, first_seen_at: daysAgo(1), closed_at: NOW });
+    expect(updateState(s2, ['greenhouse:acme'], [fe, ae], NOW, keep).state.jobs[ae.id]).toEqual({ id: ae.id, first_seen_at: daysAgo(1), closed_at: null });
+  });
+
+  it('fechadas que não passam no título saem em 14 dias; as que passam, em 90', () => {
+    const prev: State = {
+      boards: { 'greenhouse:acme': daysAgo(200) },
+      jobs: {
+        slim15: { id: 'slim15', first_seen_at: daysAgo(200), closed_at: daysAgo(15) },
+        slim13: { id: 'slim13', first_seen_at: daysAgo(200), closed_at: daysAgo(13) },
+        slimOpen: { id: 'slimOpen', first_seen_at: daysAgo(200), closed_at: null },
+        full15: { id: 'full15', company: 'A', title: 'Frontend Engineer', url: 'u', first_seen_at: daysAgo(200), closed_at: daysAgo(15) },
+        full91: { id: 'full91', company: 'A', title: 'Frontend Engineer', url: 'u', first_seen_at: daysAgo(200), closed_at: daysAgo(91) },
+        // Formato antigo, título cortado: vira enxuta e já entra na regra dos 14 dias.
+        old15: { id: 'old15', company: 'A', title: 'Account Executive', url: 'u', first_seen_at: daysAgo(200), closed_at: daysAgo(15) },
+      },
+    };
+    const out = run([], prev);
+    expect(Object.keys(out.state.jobs).sort()).toEqual(['full15', 'slim13', 'slimOpen']);
+  });
+
+  it('entradas completas do formato antigo perdem os detalhes quando o título não passa', () => {
+    const prev: State = {
+      boards: { 'greenhouse:acme': daysAgo(9), 'lever:down': daysAgo(9) },
+      jobs: {
+        'greenhouse:acme:9': { id: 'greenhouse:acme:9', company: 'Acme', title: 'Account Executive', url: 'u', first_seen_at: daysAgo(9), closed_at: daysAgo(2) },
+        'lever:down:1': { id: 'lever:down:1', company: 'Down', title: 'Staff Engineer', url: 'u', first_seen_at: daysAgo(9), closed_at: null },
+        'lever:down:2': { id: 'lever:down:2', company: 'Down', title: 'Frontend Engineer', url: 'u', first_seen_at: daysAgo(9), closed_at: null },
+      },
+    };
+    const out = run([ok('greenhouse:acme', []), failed('lever:down')], prev);
+    expect(out.state.jobs['greenhouse:acme:9']).toEqual({ id: 'greenhouse:acme:9', first_seen_at: daysAgo(9), closed_at: daysAgo(2) });
+    expect(out.state.jobs['lever:down:1']).toEqual({ id: 'lever:down:1', first_seen_at: daysAgo(9), closed_at: null });
+    expect(out.state.jobs['lever:down:2']).toMatchObject({ title: 'Frontend Engineer', closed_at: null });
+  });
+
+  it('pipeline: o estado só guarda detalhes de quem passa no filtro de título', () => {
+    const out = run([
+      ok('greenhouse:acme', [
+        raw({ id: 'greenhouse:acme:1' }),
+        raw({ id: 'greenhouse:acme:2', title: 'Software Engineer', description: 'Go and Kubernetes' }),
+        raw({ id: 'greenhouse:acme:3', title: 'Software Engineer', description: 'React' }),
+        raw({ id: 'greenhouse:acme:4', location: 'Remote, US' }),
+      ]),
+    ]);
+    expect(Object.values(out.state.jobs).map((j) => [j.id, j.title])).toEqual([
+      ['greenhouse:acme:1', 'Frontend Engineer'],
+      ['greenhouse:acme:2', undefined],
+      ['greenhouse:acme:3', 'Software Engineer'],
+      // Cortada só pelo local: o título passa, então os detalhes ficam.
+      ['greenhouse:acme:4', 'Frontend Engineer'],
+    ]);
   });
 
   it('guarda o momento da linha de base de cada board e não o sobrescreve', () => {
@@ -217,6 +292,44 @@ describe('pipeline', () => {
       ['himalayas:a/2', 'level:staff', true],
       ['himalayas:a/3', 'region_restricted', true],
     ]);
+  });
+});
+
+describe('pipeline: mesma vaga em vários locais', () => {
+  const us = raw({ id: 'greenhouse:acme:1', location: 'Remote, US', published_at: hoursAgo(5) });
+  const br = raw({ id: 'greenhouse:acme:2', location: 'Remote, Brazil', published_at: hoursAgo(30) });
+  const mx = raw({ id: 'greenhouse:acme:3', location: 'Remote, Mexico', published_at: daysAgo(30) });
+  const sp = raw({ id: 'greenhouse:acme:4', location: 'São Paulo', workplace: 'onsite', published_at: hoursAgo(1) });
+
+  it('vira uma vaga só, com os locais concatenados e o anúncio que passa como representante', () => {
+    const out = run([ok('greenhouse:acme', [us, br, mx, sp])]);
+    expect(out.latest.stats).toMatchObject({ jobs_seen: 1, jobs_in_window: 1 });
+    expect(out.rejected).toHaveLength(0);
+    expect(out.latest.jobs[0]).toMatchObject({
+      id: 'greenhouse:acme:2',
+      location: 'Remote, Brazil; Remote, Mexico; Remote, US; São Paulo',
+      workplace: 'remote',
+      region_hint: 'brazil',
+      published_at: hoursAgo(30),
+    });
+    // O estado continua registrando cada anúncio.
+    expect(Object.keys(out.state.jobs)).toHaveLength(4);
+  });
+
+  it('se nenhum local passa, é um corte só', () => {
+    const out = run([ok('greenhouse:acme', [us, sp])]);
+    expect(out.passed).toHaveLength(0);
+    expect(out.rejected).toEqual([
+      expect.objectContaining({ id: us.id, reason: 'region_restricted', location: 'Remote, US; São Paulo' }),
+    ]);
+  });
+
+  it('local novo de uma vaga antiga entra na janela', () => {
+    const day1 = run([ok('greenhouse:acme', [mx])], emptyState(), daysAgo(1));
+    expect(day1.latest.jobs).toHaveLength(0);
+    const co = raw({ id: 'greenhouse:acme:5', location: 'Remote, Colombia', published_at: null });
+    const day2 = run([ok('greenhouse:acme', [mx, co])], day1.state);
+    expect(day2.latest.jobs.map((j) => [j.id, j.location])).toEqual([[co.id, 'Remote, Colombia; Remote, Mexico']]);
   });
 });
 

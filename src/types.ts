@@ -63,9 +63,10 @@ export interface Latest {
 
 export interface StateJob {
   id: string;
-  company: string;
-  title: string;
-  url: string;
+  /** company, title e url só existem para vagas que passam no filtro de título. */
+  company?: string;
+  title?: string;
+  url?: string;
   first_seen_at: string;
   closed_at: string | null;
 }

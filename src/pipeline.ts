@@ -1,7 +1,8 @@
 import type { BoardResult, Filters, Health, Job, Latest, RawJob, State } from './types.js';
-import { dedupe, isAggregator } from './dedup.js';
-import { hasFrontendTerm, locationFilter, titleFilter } from './filters.js';
+import { dedupe, isAggregator, mergeLocations } from './dedup.js';
+import { classifyTitle, hasFrontendTerm, locationFilter, titleFilter } from './filters.js';
 import { buildHints } from './hints.js';
+import { regionHint } from './region.js';
 import { isNew, updateState } from './state.js';
 import { truncate } from './text.js';
 
@@ -41,40 +42,73 @@ export function runPipeline({ results, prevState, prevHealth, filters, now }: Pi
   const okBoards = results.filter((r) => r.ok).map((r) => r.board);
   const allJobs = results.filter((r) => r.ok).flatMap((r) => r.jobs);
 
-  // O estado registra tudo o que foi visto, antes de deduplicar e filtrar.
-  const { state } = updateState(prevState, okBoards, allJobs, now);
+  // O estado registra tudo o que foi visto, antes de deduplicar e filtrar. Quem não passa no
+  // filtro de título fica só com id e datas (ver updateState).
+  const { state } = updateState(prevState, okBoards, allJobs, now, (title, description) =>
+    description === null
+      ? classifyTitle(title, filters).status !== 'cut'
+      : titleFilter(title, description, filters).pass,
+  );
 
-  const unique = dedupe(allJobs);
+  const groups = dedupe(allJobs);
+  const cutoff = Date.parse(now) - filters.window_hours * 3_600_000;
+  const firstSeen = (raw: RawJob) => state.jobs[raw.id]?.first_seen_at ?? now;
+  const fresh = (raw: RawJob) =>
+    isNew({ published_at: raw.published_at, first_seen_at: firstSeen(raw) }, state.boards[raw.board], cutoff);
+  const effective = (j: { published_at: string | null; first_seen_at: string }) =>
+    Date.parse(j.published_at ?? j.first_seen_at);
+
   const passed: Job[] = [];
   const rejected: Rejected[] = [];
+  const inWindow = new Set<string>();
 
-  for (const raw of unique) {
-    const title = titleFilter(raw.title, raw.description, filters);
-    const location = locationFilter(raw.workplace, raw.location, raw.description, filters);
-    const reason = title.reason ?? location.reason;
-    if (reason) {
+  for (const group of groups) {
+    // Cada anúncio do grupo (mesma vaga em locais diferentes) é julgado sozinho: um local
+    // presencial ou restrito não derruba os demais, nem é salvo por eles.
+    const judged = group.map((raw) => {
+      const title = titleFilter(raw.title, raw.description, filters);
+      const location = locationFilter(raw.workplace, raw.location, raw.description, filters);
+      return { raw, reason: title.reason ?? location.reason };
+    });
+    const ok = judged
+      .filter((j) => !j.reason)
+      .map((j) => j.raw)
+      .sort(
+        (a, b) =>
+          effective({ published_at: b.published_at, first_seen_at: firstSeen(b) }) -
+            effective({ published_at: a.published_at, first_seen_at: firstSeen(a) }) || a.id.localeCompare(b.id),
+      );
+
+    if (ok.length === 0) {
+      const { raw, reason } = judged[0]!;
       rejected.push({
         id: raw.id,
         company: raw.company,
         title: raw.title,
-        location: raw.location,
+        location: mergeLocations(group.map((r) => r.location)),
         workplace: raw.workplace,
-        reason,
+        reason: reason!,
         frontend_title: hasFrontendTerm(raw.title, filters),
       });
       continue;
     }
+
+    // Representante: o anúncio novo mais recente, se houver; senão o mais recente dos que passam.
+    const raw = ok.find(fresh) ?? ok[0]!;
+    if (fresh(raw)) inWindow.add(raw.id);
+    const others = group.filter((r) => !ok.includes(r));
     passed.push({
       id: raw.id,
       source: raw.source,
       company: raw.company,
       title: raw.title,
       url: raw.url,
-      location: raw.location,
+      // Locais de todos os anúncios do grupo: primeiro os que passam no filtro, depois os demais.
+      location: mergeLocations([raw, ...ok, ...others].map((r) => r.location)),
       workplace: raw.workplace,
-      region_hint: location.region_hint,
+      region_hint: regionHint(mergeLocations(ok.map((r) => r.location)), raw.description, filters.location),
       published_at: raw.published_at,
-      first_seen_at: state.jobs[raw.id]?.first_seen_at ?? now,
+      first_seen_at: firstSeen(raw),
       date_confidence: raw.published_at ? (isAggregator(raw.source) ? 'feed' : 'ats') : 'first_seen',
       employment_type: raw.employment_type,
       salary: raw.salary,
@@ -83,11 +117,8 @@ export function runPipeline({ results, prevState, prevHealth, filters, now }: Pi
     });
   }
 
-  const boardOf = new Map(unique.map((j) => [j.id, j.board]));
-  const cutoff = Date.parse(now) - filters.window_hours * 3_600_000;
-  const effective = (j: Job) => Date.parse(j.published_at ?? j.first_seen_at);
   const jobs = passed
-    .filter((j) => isNew(j, state.boards[boardOf.get(j.id) ?? ''], cutoff))
+    .filter((j) => inWindow.has(j.id))
     .sort((a, b) => effective(b) - effective(a) || a.id.localeCompare(b.id));
 
   const health: Health = { generated_at: now, boards: {} };
@@ -109,7 +140,7 @@ export function runPipeline({ results, prevState, prevHealth, filters, now }: Pi
     stats: {
       boards_ok: okBoards.length,
       boards_failed: results.length - okBoards.length,
-      jobs_seen: unique.length,
+      jobs_seen: groups.length,
       jobs_in_window: jobs.length,
     },
     jobs,
