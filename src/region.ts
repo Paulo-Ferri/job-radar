@@ -34,6 +34,12 @@ export function restrictedTerm(location: string, cfg: LocationCfg): string | nul
   return state ? state[1]! : null;
 }
 
+/** O campo de local cita o Brasil (país ou cidade brasileira)? */
+export function isBrazilLocation(location: string, cfg: LocationCfg): boolean {
+  const f = fold(location);
+  return findTerm(f, cfg.brazil_terms) !== null || findTerm(f, cfg.brazil_places) !== null;
+}
+
 /**
  * region_hint: primeiro pelo local (termos + cidades/países); se o local não disser nada, pela
  * descrição (só os termos gerais: Brazil, LATAM, Americas, Worldwide...).

@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import type { BoardResult, Company, Discovered, Filters, Health, RawJob } from './types.js';
 import { errorCode } from './http.js';
-import { classifyTitle } from './filters.js';
+import { classifyTitle, workplaceCut } from './filters.js';
 import { runPipeline } from './pipeline.js';
 import { updateDiscovered } from './discover.js';
 import { readJson, readState, writeJson, writeState } from './output.js';
@@ -11,6 +11,7 @@ import { fetchLever } from './sources/lever.js';
 import { fetchWorkable } from './sources/workable.js';
 import { fetchSmartRecruiters } from './sources/smartrecruiters.js';
 import { fetchRecruitee } from './sources/recruitee.js';
+import { fetchInhire } from './sources/inhire.js';
 import { fetchHimalayas } from './sources/himalayas.js';
 import { fetchRemoteOk } from './sources/remoteok.js';
 import { fetchWwr } from './sources/wwr.js';
@@ -45,6 +46,8 @@ async function main(): Promise<void> {
     workable: fetchWorkable,
     smartrecruiters: (c) => fetchSmartRecruiters(c, wantsDetail),
     recruitee: fetchRecruitee,
+    inhire: (c) =>
+      fetchInhire(c, (title, workplace, location) => wantsDetail(title) && workplaceCut(workplace, location, filters) === null),
   };
 
   const tasks: Array<Promise<BoardResult>> = companies.map((c) => {

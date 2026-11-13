@@ -54,6 +54,17 @@ const probes: Record<string, Probe> = {
     const jobs = r.offers ?? [];
     return hit('recruitee', id, jobs.length, jobs[0]?.company_name ?? '', jobs.map((j: any) => `${j.title} @ ${j.location}`));
   },
+  // id = tenant, o subdomínio de {tenant}.inhire.app. Usa fetch direto por causa do cabeçalho X-Tenant.
+  inhire: async (id) => {
+    const res = await fetch('https://api.inhire.app/job-posts/public/pages', {
+      headers: { 'User-Agent': 'job-radar/1.0', Accept: 'application/json', 'X-Tenant': id },
+      signal: AbortSignal.timeout(20_000),
+    });
+    if (!res.ok) throw Object.assign(new Error('inhire'), { code: `http_${res.status}` });
+    const r: any = await res.json();
+    const jobs = r.jobsPage ?? [];
+    return hit('inhire', id, jobs.length, r.tenantName ?? '', jobs.map((j: any) => `${j.displayName} @ ${j.location} (${j.workplaceType})`));
+  },
 };
 
 async function probeCompany(name: string, ids: string[]): Promise<void> {

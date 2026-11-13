@@ -55,6 +55,7 @@ Para mudar o horário, edite `crons` e `PRIMARY_CRON` em `cloudflare/wrangler.to
 | Workable | ATS | `published_on` (precisão de dia) |
 | SmartRecruiters | ATS | `releasedDate` (descrição buscada só para títulos que passam no filtro) |
 | Recruitee | ATS | `published_at` |
+| InHire | ATS | `publishedAt`; se faltar, `createdAt` (nunca `lastPublishedAt`/`updatedAt`). Detalhe buscado só para título e modalidade que podem passar |
 | Himalayas | agregador | `pubDate` (busca por termos, ver `himalayas` em `config/filters.json`) |
 | RemoteOK | agregador | `date` |
 | We Work Remotely | agregador | `pubDate` do RSS (front-end e full-stack) |
@@ -70,6 +71,7 @@ Gupy não tem API pública utilizável sem token, então empresas que usam Gupy 
    - `apply.workable.com/{id}/...` → `workable`
    - `jobs.smartrecruiters.com/{id}/...` → `smartrecruiters`
    - `{id}.recruitee.com/...` → `recruitee`
+   - `{id}.inhire.app/vagas/...` → `inhire`
 2. Confirme que responde com vagas: `npm run probe -- "Nome" id-provavel outro-id`. Confira a
    amostra: identificadores curtos (`flash`, `circle`, `dock`) costumam ser de outra empresa. O
    Workable devolve 429 com facilidade; se aparecer nos erros, repita só ele mais tarde.
@@ -92,7 +94,10 @@ O coletor só corta o que é objetivamente fora; na dúvida mantém.
   sre só cortam quando o título não tem termo forte de frontend (`strong_frontend_terms`).
 - **Título, passe**: termos de `frontend_terms`. Títulos genéricos (`generic_titles`) só passam se a
   descrição citar React ou TypeScript. O resto é cortado.
-- **Local**: corta híbrido/presencial declarado pela fonte. Quando o local nomeia país/região fora
+- **Modalidade**: presencial declarado pela fonte é cortado sempre. Híbrida só passa quando o campo
+  de local é no Brasil (país ou cidade brasileira); ela sai com `workplace: "hybrid"` e quem consome
+  decide. Híbrida fora do Brasil, ou sem local, é cortada.
+- **Local**: quando o local nomeia país/região fora
   da América Latina, a vaga só passa se o próprio local também citar uma região aceita (Brazil,
   LATAM, Americas, Worldwide, Anywhere, Global, cidades e países da América Latina) ou se a
   descrição citar Brazil/Brasil, LATAM, Latin America, South America ou Americas. Worldwide,
@@ -114,7 +119,7 @@ Vagas que passaram nos filtros e são novas na janela, da mais recente para a ma
   "jobs": [
     {
       "id": "greenhouse:gitlab:8199086002",
-      "source": "greenhouse | ashby | lever | workable | smartrecruiters | recruitee | himalayas | remoteok | wwr",
+      "source": "greenhouse | ashby | lever | workable | smartrecruiters | recruitee | inhire | himalayas | remoteok | wwr",
       "company": "GitLab",
       "title": "Intermediate Frontend Engineer",
       "url": "link direto da vaga",
@@ -186,5 +191,6 @@ derruba a execução; o processo só termina com erro se todas falharem.
 
 ## Robustez
 
-Até 5 requisições simultâneas, timeout de 20 s e 1 nova tentativa por requisição.
+Até 5 requisições simultâneas, timeout de 20 s e 1 nova tentativa por requisição. O InHire tem
+fila própria: 2 requisições simultâneas, pausa de 0,4 s depois de cada uma e nenhuma nova tentativa.
 User-Agent: `job-radar/1.0`.

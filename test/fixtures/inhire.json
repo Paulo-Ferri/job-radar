@@ -1,0 +1,50 @@
+{
+  "tenantName": "Alice",
+  "visibility": "external",
+  "jobsPage": [
+    {
+      "careerPageId": "default",
+      "careerPageIds": [
+        "default"
+      ],
+      "displayName": "Business Analyst | Autorização",
+      "jobId": "f4b3b7a2-3686-4785-9084-7e373edb17ab",
+      "status": "published",
+      "workplaceType": "On-site",
+      "location": "São Paulo, SP, BR"
+    },
+    {
+      "careerPageId": "default",
+      "careerPageIds": [
+        "default"
+      ],
+      "displayName": "Enfermagem | Enfermeira(o) de Triagem Digital (Alice Agora) I Tempo Determinado",
+      "jobId": "29fec19f-6f79-4b24-9d31-ee4d671b6e82",
+      "status": "published",
+      "workplaceType": "Remote",
+      "location": "BR"
+    },
+    {
+      "careerPageId": "default",
+      "careerPageIds": [
+        "default"
+      ],
+      "displayName": "Product Manager ",
+      "jobId": "22b6d2de-4ff5-4a00-aa35-5218a5f3fdd3",
+      "status": "published",
+      "workplaceType": "Hybrid",
+      "location": "São Paulo, SP, BR"
+    },
+    {
+      "careerPageId": "default",
+      "careerPageIds": [
+        "default"
+      ],
+      "displayName": "Staff Security Engineer",
+      "jobId": "121e94cc-7876-4c0e-9fb2-942aca58c1d5",
+      "status": "published",
+      "workplaceType": "Remote",
+      "location": "BR"
+    }
+  ]
+}

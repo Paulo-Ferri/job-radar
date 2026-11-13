@@ -1,6 +1,6 @@
 import type { Filters, RegionHint, Workplace } from './types.js';
 import { findTerm, fold } from './text.js';
-import { regionHint } from './region.js';
+import { isBrazilLocation, regionHint } from './region.js';
 
 export type TitleClass =
   | { status: 'pass' }
@@ -50,6 +50,16 @@ export function titleFilter(title: string, description: string, cfg: Filters): V
   return mention ? { pass: true, reason: null } : { pass: false, reason: 'generic_without_react_ts' };
 }
 
+/**
+ * Modalidade: presencial nunca passa; híbrida só passa com local no Brasil (quem consome decide
+ * se vale a pena); remota e não declarada passam. Devolve o motivo do corte ou null.
+ */
+export function workplaceCut(workplace: Workplace, location: string, cfg: Filters): string | null {
+  if (workplace === 'onsite') return 'workplace:onsite';
+  if (workplace === 'hybrid' && !isBrazilLocation(location, cfg.location)) return 'workplace:hybrid';
+  return null;
+}
+
 export function locationFilter(
   workplace: Workplace,
   location: string,
@@ -57,9 +67,8 @@ export function locationFilter(
   cfg: Filters,
 ): Verdict & { region_hint: RegionHint } {
   const region_hint = regionHint(location, description, cfg.location);
-  if (workplace === 'hybrid' || workplace === 'onsite') {
-    return { pass: false, reason: `workplace:${workplace}`, region_hint };
-  }
+  const cut = workplaceCut(workplace, location, cfg);
+  if (cut) return { pass: false, reason: cut, region_hint };
   if (region_hint === 'restricted') return { pass: false, reason: 'region_restricted', region_hint };
   return { pass: true, reason: null, region_hint };
 }

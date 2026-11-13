@@ -5,6 +5,7 @@ import { normalizeAshby } from '../src/sources/ashby.js';
 import { normalizeLever } from '../src/sources/lever.js';
 import { normalizeWorkable } from '../src/sources/workable.js';
 import { describeSmartRecruiters, normalizeSmartRecruiters } from '../src/sources/smartrecruiters.js';
+import { expandCountry, normalizeInhire } from '../src/sources/inhire.js';
 import { normalizeRecruitee } from '../src/sources/recruitee.js';
 import { normalizeHimalayas } from '../src/sources/himalayas.js';
 import { normalizeRemoteOk } from '../src/sources/remoteok.js';
@@ -216,5 +217,61 @@ describe('wwr', () => {
     expect(jobs[0]!.location).toBe('Anywhere in the World');
     expect(jobs[0]!.published_at).toBe('2026-11-01T07:31:04.000Z');
     expect(jobs[0]!.employment_type).toBe('Full-Time');
+  });
+});
+
+describe('inhire', () => {
+  const company = { name: 'Alice', ats: 'inhire', id: 'alice' } as const;
+  const list = jsonFixture('inhire.json');
+  const detail = jsonFixture('inhire-detail.json');
+
+  it('normaliza a listagem real com o detalhe da primeira vaga', () => {
+    const jobs = normalizeInhire(list, company, { [detail.jobId]: detail });
+    expect(jobs).toHaveLength(list.jobsPage.length);
+    expect(jobs[0]).toMatchObject({
+      id: `inhire:alice:${detail.jobId}`,
+      source: 'inhire',
+      board: 'inhire:alice',
+      company: 'Alice',
+      title: 'Business Analyst | Autorização',
+      url: `https://alice.inhire.app/vagas/${detail.jobId}`,
+      location: 'São Paulo, SP, Brazil · Híbrido com dois dias fixos e com disponibilidade para outros dias quando necessario',
+      workplace: 'onsite',
+      published_at: detail.publishedAt,
+      employment_type: 'CLT',
+      salary: null,
+    });
+    expect(jobs[0]!.description).toContain('Sobre a Alice');
+    expect(jobs[0]!.description).not.toContain('<');
+  });
+
+  it('sem detalhe fica sem data e sem descrição, com o país por extenso', () => {
+    const jobs = normalizeInhire(list, company);
+    const remote = jobs.find((j) => j.title === 'Staff Security Engineer')!;
+    expect(remote).toMatchObject({ location: 'Brazil', workplace: 'remote', published_at: null, description: '', employment_type: null });
+    expect(jobs.find((j) => j.title === 'Product Manager')).toMatchObject({ workplace: 'hybrid', location: 'São Paulo, SP, Brazil' });
+  });
+
+  it('usa publishedAt, depois createdAt, e nunca lastPublishedAt/updatedAt', () => {
+    const id = list.jobsPage[0].jobId;
+    const at = (d: object) => normalizeInhire(list, company, { [id]: d })[0]!.published_at;
+    expect(detail.lastPublishedAt).not.toBe(detail.publishedAt);
+    expect(at(detail)).toBe(detail.publishedAt);
+    expect(at({ ...detail, publishedAt: null, createdAt: '2026-10-01T10:00:00.000Z' })).toBe('2026-10-01T10:00:00.000Z');
+    expect(at({ lastPublishedAt: detail.lastPublishedAt, updatedAt: detail.updatedAt })).toBeNull();
+  });
+
+  it('só entram vagas com status published', () => {
+    const payload = { jobsPage: [{ ...list.jobsPage[0], status: 'draft' }, { ...list.jobsPage[1], status: undefined }, list.jobsPage[2]] };
+    expect(normalizeInhire(payload, company).map((j) => j.id)).toEqual([`inhire:alice:${list.jobsPage[2].jobId}`]);
+  });
+
+  it('expande o código do país só no formato cidade, estado, país (ou país sozinho)', () => {
+    expect(expandCountry('São Paulo, SP, BR')).toBe('São Paulo, SP, Brazil');
+    expect(expandCountry('BR')).toBe('Brazil');
+    expect(expandCountry('Austin, TX, US')).toBe('Austin, TX, United States');
+    expect(expandCountry('Florianópolis, SC')).toBe('Florianópolis, SC');
+    expect(expandCountry('Remoto')).toBe('Remoto');
+    expect(expandCountry('')).toBe('');
   });
 });

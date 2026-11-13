@@ -2,7 +2,7 @@ export type Workplace = 'remote' | 'hybrid' | 'onsite' | 'unknown';
 export type RegionHint = 'brazil' | 'latam' | 'americas' | 'worldwide' | 'restricted' | 'unknown';
 export type DateConfidence = 'ats' | 'feed' | 'first_seen';
 
-export type AtsName = 'greenhouse' | 'ashby' | 'lever' | 'workable' | 'smartrecruiters' | 'recruitee';
+export type AtsName = 'greenhouse' | 'ashby' | 'lever' | 'workable' | 'smartrecruiters' | 'recruitee' | 'inhire';
 
 export interface Company {
   name: string;

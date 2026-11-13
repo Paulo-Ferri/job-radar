@@ -141,10 +141,20 @@ describe('filtro de local', () => {
     expect(loc('Remote - Global').region_hint).toBe('worldwide');
   });
 
-  it('corta presencial e híbrido declarados pelo ATS, mesmo no Brasil', () => {
-    expect(loc('São Paulo', '', 'hybrid')).toMatchObject({ pass: false, reason: 'workplace:hybrid' });
+  it('presencial é cortado sempre; híbrida só passa com local no Brasil', () => {
     expect(loc('São Paulo', '', 'onsite')).toMatchObject({ pass: false, reason: 'workplace:onsite' });
+    expect(loc('Remote - Brazil', '', 'onsite')).toMatchObject({ pass: false, reason: 'workplace:onsite' });
+    expect(loc('São Paulo', '', 'hybrid')).toEqual({ pass: true, reason: null, region_hint: 'brazil' });
+    expect(loc('Curitiba, PR, Brazil · Híbrido com dois dias fixos', '', 'hybrid').pass).toBe(true);
+    expect(loc('Brasil', '', 'hybrid').pass).toBe(true);
     expect(loc('São Paulo', '', 'unknown').pass).toBe(true);
+  });
+
+  it('híbrida fora do Brasil continua cortada, mesmo com Brasil só na descrição', () => {
+    expect(loc('London', '', 'hybrid')).toMatchObject({ pass: false, reason: 'workplace:hybrid' });
+    expect(loc('Buenos Aires', '', 'hybrid')).toMatchObject({ pass: false, reason: 'workplace:hybrid' });
+    expect(loc('', '', 'hybrid')).toMatchObject({ pass: false, reason: 'workplace:hybrid' });
+    expect(loc('Hybrid', 'Our office is in Brazil', 'hybrid')).toMatchObject({ pass: false, reason: 'workplace:hybrid' });
   });
 
   it('não trata "us" minúsculo nem siglas brasileiras como restrição', () => {

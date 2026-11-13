@@ -168,5 +168,23 @@
 
   { "name": "Tether", "ats": "recruitee", "id": "tether" },
   { "name": "Curotec", "ats": "recruitee", "id": "curotec" },
-  { "name": "Somnio Software", "ats": "recruitee", "id": "somniosoftware" }
+  { "name": "Somnio Software", "ats": "recruitee", "id": "somniosoftware" },
+
+  { "name": "Warren", "ats": "inhire", "id": "warren" },
+  { "name": "Conta Azul", "ats": "inhire", "id": "contaazul" },
+  { "name": "Olist", "ats": "inhire", "id": "olist" },
+  { "name": "Nuvemshop", "ats": "inhire", "id": "nuvemshop-tiendanube" },
+  { "name": "Loggi", "ats": "inhire", "id": "loggi" },
+  { "name": "Alice", "ats": "inhire", "id": "alice" },
+  { "name": "Unico", "ats": "inhire", "id": "unico" },
+  { "name": "Dock", "ats": "inhire", "id": "dock" },
+  { "name": "Cora", "ats": "inhire", "id": "cora" },
+  { "name": "Alura", "ats": "inhire", "id": "alun" },
+  { "name": "DB1", "ats": "inhire", "id": "db1" },
+  { "name": "Objective", "ats": "inhire", "id": "objective" },
+  { "name": "Venturus", "ats": "inhire", "id": "venturus" },
+  { "name": "Kanastra", "ats": "inhire", "id": "kanastra" },
+  { "name": "Contabilizei", "ats": "inhire", "id": "contabilizei" },
+  { "name": "Sympla", "ats": "inhire", "id": "sympla" },
+  { "name": "Cobli", "ats": "inhire", "id": "cobli" }
 ]

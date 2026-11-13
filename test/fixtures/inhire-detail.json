@@ -1,0 +1,23 @@
+{
+  "tenantName": "Alice",
+  "visibility": "external",
+  "careerPageId": "default",
+  "careerPageIds": [
+    "default"
+  ],
+  "contractType": [
+    "CLT"
+  ],
+  "createdAt": "2026-10-28T12:42:45.115Z",
+  "description": "<h1 dir=\"ltr\"><strong>Sobre a Alice</strong></h1>\n<p dir=\"ltr\">Somos a Alice, reconhecidamente a empresa mais inovadora da Am&eacute;rica Latina (Most Innovative Companies 2025) e uma das 15 Health Techs mais inovadoras do mundo em 2026. Nossa miss&atilde;o &eacute; tornar o mundo mais saud&aacute;vel. Como plano de sa&uacute;de para empresas, estamos reconstruindo o sistema de sa&uacute;de no Brasil.</p>\n<p dir=\"ltr\">Aos nossos mais de 100 mil membros, oferecemos uma jornada de sa&uacute;de integrada &agrave; tecnologia: simples de acessar, envolvente e extremamente confi&aacute;vel. Temos orgulho da nossa cultura e do nosso time, que trabalha com paix&atilde;o pelo prop&oacute;sito e protagonismo para transformar o setor de sa&uacute;de.</p>",
+  "displayName": "Business Analyst | Autorização",
+  "lastPublishedAt": "2026-11-13T12:45:50.988Z",
+  "publishedAt": "2026-10-28T12:42:45.115Z",
+  "status": "published",
+  "updatedAt": "2026-11-13T12:45:50.988Z",
+  "jobId": "f4b3b7a2-3686-4785-9084-7e373edb17ab",
+  "workplaceType": "On-site",
+  "location": "São Paulo, SP, BR",
+  "locationComplement": "Híbrido  com dois dias fixos e com disponibilidade para outros dias quando necessario ",
+  "salaryCurrency": "BRL"
+}
