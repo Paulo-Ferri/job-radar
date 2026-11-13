@@ -2,7 +2,8 @@
 
 Coletor diário de vagas de frontend, em código puro (sem IA). Lê as vagas direto dos sistemas de
 recrutamento (ATS) das empresas listadas e de alguns agregadores, aplica filtros objetivos e grava
-o resultado em `data/`. Roda no GitHub Actions todo dia às 07:17 (Brasília). A curadoria fina é
+o resultado em `data/`. Roda no GitHub Actions todo dia às 07:17 (Brasília), disparado por um Worker da Cloudflare
+(ver [Agendamento](#agendamento)). A curadoria fina é
 feita por outra rotina, fora deste repositório, que lê `data/latest.json`.
 
 Por que ATS: eles informam a data real de publicação e só listam vagas abertas.
@@ -18,6 +19,31 @@ npm run typecheck
 ```
 
 Requer Node 22. Sem chave de API, sem banco de dados.
+
+## Agendamento
+
+O `schedule` do GitHub Actions atrasa horas e às vezes pula o dia, então o workflow
+`collect.yml` só tem `workflow_dispatch`. Quem dispara é o Worker em `cloudflare/`, com dois crons:
+
+- 07:17 (Brasília): dispara a coleta.
+- 08:02: dispara de novo só se nenhuma execução de hoje deu certo ou está em andamento.
+
+A coleta continua rodando no Actions e gravando `data/` neste repositório.
+
+Publicar (uma vez, e de novo quando mudar `cloudflare/`):
+
+```sh
+cd cloudflare
+npx wrangler login
+npx wrangler deploy
+npx wrangler secret put GITHUB_TOKEN
+```
+
+O `GITHUB_TOKEN` é um token fine-grained do GitHub restrito a este repositório, com a permissão
+**Actions: Read and write**. Quando ele expirar, o Worker passa a falhar (aparece nos logs do
+Worker no painel da Cloudflare); basta gerar outro e repetir o `secret put`.
+
+Para mudar o horário, edite `crons` e `PRIMARY_CRON` em `cloudflare/wrangler.toml` (em UTC).
 
 ## Fontes
 

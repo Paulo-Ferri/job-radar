@@ -1,3 +1,5 @@
 node_modules/
 data/rejected.json
 .DS_Store
+.wrangler/
+.dev.vars

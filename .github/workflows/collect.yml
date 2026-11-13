@@ -1,11 +1,8 @@
 name: collect
 
+# Sem "schedule": o agendador do GitHub atrasa horas e pula dias. Quem dispara este
+# workflow todo dia às 07:17 (Brasília) é o Worker em cloudflare/ (ver README).
 on:
-  schedule:
-    - cron: "17 5 * * *"   # 02:17 em Brasília
-    - cron: "17 7 * * *"   # 04:17
-    - cron: "17 9 * * *"   # 06:17
-    - cron: "47 10 * * *"  # 07:47
   workflow_dispatch:
 
 permissions:
@@ -21,6 +18,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main # sempre a ponta da main, mesmo em reexecução de um run antigo
 
       - uses: actions/setup-node@v4
         with:
@@ -41,5 +40,5 @@ jobs:
             echo "Sem mudanças em data/."
           else
             git commit -m "data: coleta de $(date -u +%Y-%m-%dT%H:%MZ)"
-            git push
+            git push || (git pull --rebase && git push)
           fi

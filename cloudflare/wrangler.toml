@@ -1,0 +1,20 @@
+name = "job-radar-trigger"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+workers_dev = false
+
+[triggers]
+# Cloudflare usa UTC. Brasília = UTC-3, sem horário de verão.
+crons = [
+  "17 10 * * *", # 07:17 em Brasília: dispara a coleta
+  "2 11 * * *",  # 08:02 em Brasília: dispara de novo só se a coleta de hoje não deu certo
+]
+
+[vars]
+GITHUB_REPO = "Paulo-Ferri/job-radar"
+GITHUB_WORKFLOW = "collect.yml"
+GITHUB_REF = "main"
+PRIMARY_CRON = "17 10 * * *"
+
+[observability]
+enabled = true
