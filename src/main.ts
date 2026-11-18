@@ -57,7 +57,15 @@ async function main(): Promise<void> {
     return collect(board, c.name, () => fetcher(c));
   });
   tasks.push(
-    collect('himalayas', 'Himalayas', () => fetchHimalayas(filters.himalayas, cutoff)),
+    fetchHimalayas(filters.himalayas, cutoff).then(
+      ({ jobs, error }): BoardResult =>
+        error === null
+          ? { board: 'himalayas', name: 'Himalayas', ok: true, jobs, error: null }
+          : jobs.length > 0
+            ? { board: 'himalayas', name: 'Himalayas', ok: true, jobs, error: `partial:${error}`, partial: true }
+            : { board: 'himalayas', name: 'Himalayas', ok: false, jobs: [], error },
+      (e: unknown): BoardResult => ({ board: 'himalayas', name: 'Himalayas', ok: false, jobs: [], error: errorCode(e) }),
+    ),
     collect('remoteok', 'RemoteOK', fetchRemoteOk),
     collect('wwr', 'We Work Remotely', fetchWwr),
   );
@@ -83,6 +91,7 @@ async function main(): Promise<void> {
       `passaram nos filtros=${out.passed.length} na janela=${stats.jobs_in_window}`,
   );
   for (const r of results.filter((r) => !r.ok)) console.log(`  falhou: ${r.board} (${r.error})`);
+  for (const r of results.filter((r) => r.partial)) console.log(`  parcial: ${r.board} (${r.error}, ${r.jobs.length} vagas)`);
 
   if (results.length > 0 && stats.boards_ok === 0) {
     console.error('Todas as fontes falharam.');

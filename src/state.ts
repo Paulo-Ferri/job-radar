@@ -29,6 +29,8 @@ export type KeepDetails = (title: string, description: string | null) => boolean
  * - Vaga nova: entra com first_seen_at = agora. Vaga que reaparece: closed_at volta a null.
  * - Só fecha (closed_at = agora) vaga de board cuja consulta deu certo e que não veio na resposta.
  * - Board com falha não muda nada nas suas vagas nem ganha linha de base.
+ * - Board parcial (em `okBoards`, fora de `completeBoards`): registra as vagas que vieram, mas não
+ *   fecha as que faltaram nem ganha linha de base.
  * - Remove vagas fechadas há mais de 90 dias; as que não passam no filtro de título, há mais de 14.
  * - Vaga que não passa no filtro de título (`keepDetails` falso) fica só com id, first_seen_at e
  *   closed_at: é a grande maioria, e o que ela precisa guardar é só quando foi vista.
@@ -39,10 +41,12 @@ export function updateState(
   jobs: RawJob[],
   now: string,
   keepDetails: KeepDetails = () => true,
+  completeBoards: string[] = okBoards,
 ): StateUpdate {
   const ok = new Set(okBoards);
+  const complete = new Set(completeBoards);
   const boards = { ...prev.boards };
-  for (const b of okBoards) boards[b] ??= now;
+  for (const b of completeBoards) boards[b] ??= now;
 
   const next: Record<string, StateJob> = {};
   for (const [id, j] of Object.entries(prev.jobs)) next[id] = { ...j };
@@ -65,7 +69,7 @@ export function updateState(
   for (const id of Object.keys(next)) {
     let j = next[id]!;
     if (!seen.has(id)) {
-      if (j.closed_at === null && ok.has(boardOfId(id))) j.closed_at = now;
+      if (j.closed_at === null && complete.has(boardOfId(id))) j.closed_at = now;
       // Entradas antigas (ou de board com falha) que não passam pelo título também perdem os detalhes.
       if (j.title !== undefined && !keepDetails(j.title, null)) {
         j = next[id] = { id: j.id, first_seen_at: j.first_seen_at, closed_at: j.closed_at };

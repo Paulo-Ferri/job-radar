@@ -1,5 +1,5 @@
 import type { Filters, RawJob } from '../types.js';
-import { getJson } from '../http.js';
+import { errorCode, getJson } from '../http.js';
 import { cleanText, htmlToText, toIso } from '../text.js';
 import { extractAtsLinks } from '../discover.js';
 
@@ -54,25 +54,46 @@ export function normalizeHimalayas(payload: HimalayasPage): RawJob[] {
 }
 
 const PAGE_SIZE = 20;
-const PAUSE_MS = 400;
+/** Pausa entre páginas: a API responde 429 a rajadas. */
+const PAUSE_MS = 1_500;
+/** Em 429: até 4 novas tentativas por página, esperando 10, 20, 40 e 60 s (ou o Retry-After, até 60 s). */
+const RETRY = { retries: 4, maxRetryAfter: 60, backoff429: (attempt: number) => Math.min(10 * 2 ** attempt, 60) };
+
+export interface HimalayasResult {
+  jobs: RawJob[];
+  /** Código do erro que interrompeu a busca; com `jobs` não vazio, o resultado é parcial. */
+  error: string | null;
+}
 
 /**
  * Busca por termos, da mais recente para a mais antiga. Para cada termo, para quando a página
- * inteira já está fora da janela, quando acaba, ou no teto de páginas.
+ * inteira já está fora da janela, quando acaba, ou no teto de páginas. Se uma página falha mesmo
+ * depois das novas tentativas, a busca para e devolve o que já tinha coletado junto com o erro.
  */
-export async function fetchHimalayas(cfg: Filters['himalayas'], cutoffMs: number): Promise<RawJob[]> {
+export async function fetchHimalayas(
+  cfg: Filters['himalayas'],
+  cutoffMs: number,
+  pauseMs = PAUSE_MS,
+): Promise<HimalayasResult> {
   const byId = new Map<string, RawJob>();
-  // Uma requisição por vez, com pausa: a API responde 429 a rajadas.
-  for (const term of cfg.search_terms) {
+  const pause = () => new Promise((r) => setTimeout(r, pauseMs));
+  // Uma requisição por vez, com pausa.
+  for (const [i, term] of cfg.search_terms.entries()) {
+    if (i > 0) await pause();
     for (let page = 1; page <= cfg.max_pages_per_term; page++) {
+      if (page > 1) await pause();
       const url = `https://himalayas.app/jobs/api/search?q=${encodeURIComponent(term)}&sort=recent&page=${page}`;
-      const payload = await getJson<HimalayasPage>(url);
+      let payload: HimalayasPage;
+      try {
+        payload = await getJson<HimalayasPage>(url, RETRY);
+      } catch (e) {
+        return { jobs: [...byId.values()], error: errorCode(e) };
+      }
       const raw = payload.jobs ?? [];
       for (const job of normalizeHimalayas(payload)) byId.set(job.id, job);
       const anyInWindow = raw.some((j) => (j.pubDate ?? 0) * 1000 >= cutoffMs);
       if (raw.length < PAGE_SIZE || !anyInWindow) break;
-      await new Promise((r) => setTimeout(r, PAUSE_MS));
     }
   }
-  return [...byId.values()];
+  return { jobs: [...byId.values()], error: null };
 }

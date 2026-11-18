@@ -97,6 +97,11 @@ export interface BoardResult {
   ok: boolean;
   jobs: RawJob[];
   error: string | null;
+  /**
+   * A consulta parou no meio (ok = true e `error` preenchido): as vagas que vieram entram
+   * normalmente, mas as que não vieram não são fechadas e o board não ganha linha de base.
+   */
+  partial?: boolean;
 }
 
 export interface Filters {

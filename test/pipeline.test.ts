@@ -95,6 +95,17 @@ describe('estado', () => {
     expect(day3.jobs['greenhouse:acme:2']).toMatchObject({ first_seen_at: daysAgo(2), closed_at: NOW });
   });
 
+  it('board parcial registra o que veio, mas não fecha o que faltou nem ganha linha de base', () => {
+    const a = raw({ source: 'himalayas', id: 'himalayas:acme/1' });
+    const b = raw({ source: 'himalayas', id: 'himalayas:acme/2' });
+    const day1 = updateState(emptyState(), ['himalayas'], [a], daysAgo(1)).state;
+
+    const partial = updateState({ boards: {}, jobs: day1.jobs }, ['himalayas'], [b], NOW, () => true, []).state;
+    expect(partial.jobs['himalayas:acme/1']!.closed_at).toBeNull();
+    expect(partial.jobs['himalayas:acme/2']).toMatchObject({ first_seen_at: NOW, closed_at: null });
+    expect(partial.boards['himalayas']).toBeUndefined();
+  });
+
   it('reabre a vaga que reaparece, preservando first_seen_at', () => {
     const a = raw({ id: 'greenhouse:acme:1' });
     const s1 = updateState(emptyState(), ['greenhouse:acme'], [a], daysAgo(5)).state;

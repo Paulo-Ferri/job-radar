@@ -53,27 +53,39 @@ async function once(url: string, accept: string): Promise<string> {
   }
 }
 
+export interface RetryOptions {
+  /** Novas tentativas depois da primeira (padrão 1). */
+  retries?: number;
+  /** Teto da espera em 429, em segundos (padrão 30). */
+  maxRetryAfter?: number;
+  /** Espera em 429 sem Retry-After, por tentativa (padrão 5 s em todas). */
+  backoff429?: (attempt: number) => number;
+}
+
 const retryable = (e: unknown) =>
   e instanceof HttpError && (e.status === null || e.status === 429 || e.status >= 500);
 
 /** GET com User-Agent fixo, timeout de 20 s, 1 nova tentativa e no máximo 5 requisições simultâneas. */
-export async function getText(url: string, accept = 'application/json'): Promise<string> {
-  return withSlot(async () => {
-    for (let attempt = 0; ; attempt++) {
-      try {
-        return await once(url, accept);
-      } catch (e) {
-        if (attempt >= RETRIES || !retryable(e)) throw e;
-        // Em 429 respeita o Retry-After (até 30 s); nos demais casos espera 1 s.
-        const wait = e instanceof HttpError && e.status === 429 ? Math.min(e.retryAfter ?? 5, MAX_RETRY_AFTER_S) : 1;
-        await new Promise((r) => setTimeout(r, wait * 1000));
-      }
+export async function getText(url: string, accept = 'application/json', opts: RetryOptions = {}): Promise<string> {
+  const retries = opts.retries ?? RETRIES;
+  const maxRetryAfter = opts.maxRetryAfter ?? MAX_RETRY_AFTER_S;
+  const backoff429 = opts.backoff429 ?? (() => 5);
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await withSlot(() => once(url, accept));
+    } catch (e) {
+      if (attempt >= retries || !retryable(e)) throw e;
+      // Em 429 respeita o Retry-After (até o teto); nos demais casos espera 1 s. A espera é fora
+      // da fila, para não segurar vaga de outras fontes.
+      const wait =
+        e instanceof HttpError && e.status === 429 ? Math.min(e.retryAfter ?? backoff429(attempt), maxRetryAfter) : 1;
+      await new Promise((r) => setTimeout(r, wait * 1000));
     }
-  });
+  }
 }
 
-export async function getJson<T = unknown>(url: string): Promise<T> {
-  const text = await getText(url);
+export async function getJson<T = unknown>(url: string, opts: RetryOptions = {}): Promise<T> {
+  const text = await getText(url, 'application/json', opts);
   try {
     return JSON.parse(text) as T;
   } catch {

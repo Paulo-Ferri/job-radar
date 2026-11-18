@@ -44,10 +44,17 @@ export function runPipeline({ results, prevState, prevHealth, filters, now }: Pi
 
   // O estado registra tudo o que foi visto, antes de deduplicar e filtrar. Quem não passa no
   // filtro de título fica só com id e datas (ver updateState).
-  const { state } = updateState(prevState, okBoards, allJobs, now, (title, description) =>
-    description === null
-      ? classifyTitle(title, filters).status !== 'cut'
-      : titleFilter(title, description, filters).pass,
+  const completeBoards = results.filter((r) => r.ok && !r.partial).map((r) => r.board);
+  const { state } = updateState(
+    prevState,
+    okBoards,
+    allJobs,
+    now,
+    (title, description) =>
+      description === null
+        ? classifyTitle(title, filters).status !== 'cut'
+        : titleFilter(title, description, filters).pass,
+    completeBoards,
   );
 
   const groups = dedupe(allJobs);

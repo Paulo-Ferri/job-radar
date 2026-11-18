@@ -182,7 +182,8 @@ feed consultado.
 }
 ```
 
-`error` é um código (`http_404`, `http_429`, `timeout`, `network`, `parse`). Uma fonte que falha não
+`error` é um código (`http_404`, `http_429`, `timeout`, `network`, `parse`); com `ok: true`, um
+`partial:<código>` indica que a consulta parou no meio e o que veio foi aproveitado. Uma fonte que falha não
 derruba a execução; o processo só termina com erro se todas falharem.
 
 ### `data/discovered.json`
@@ -193,4 +194,8 @@ derruba a execução; o processo só termina com erro se todas falharem.
 
 Até 5 requisições simultâneas, timeout de 20 s e 1 nova tentativa por requisição. O InHire tem
 fila própria: 2 requisições simultâneas, pausa de 0,4 s depois de cada uma e nenhuma nova tentativa.
+O Himalayas vai uma página por vez, com pausa de 1,5 s; em 429 tenta de novo até 4 vezes por página
+(esperando 10, 20, 40 e 60 s, ou o `Retry-After` até 60 s). Se ainda assim falhar, a busca para e
+as vagas já coletadas entram normalmente: o board fica `ok: true` com `error: "partial:http_429"`,
+e nessa execução nenhuma vaga dele é fechada.
 User-Agent: `job-radar/1.0`.

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { fixture, jsonFixture } from './helpers.js';
 import { normalizeGreenhouse } from '../src/sources/greenhouse.js';
 import { normalizeAshby } from '../src/sources/ashby.js';
@@ -7,7 +7,7 @@ import { normalizeWorkable } from '../src/sources/workable.js';
 import { describeSmartRecruiters, normalizeSmartRecruiters } from '../src/sources/smartrecruiters.js';
 import { expandCountry, normalizeInhire } from '../src/sources/inhire.js';
 import { normalizeRecruitee } from '../src/sources/recruitee.js';
-import { normalizeHimalayas } from '../src/sources/himalayas.js';
+import { fetchHimalayas, normalizeHimalayas } from '../src/sources/himalayas.js';
 import { normalizeRemoteOk } from '../src/sources/remoteok.js';
 import { normalizeWwr } from '../src/sources/wwr.js';
 import type { RawJob } from '../src/types.js';
@@ -188,6 +188,40 @@ describe('himalayas', () => {
   it('sem restrição de local vira Worldwide', () => {
     const [job] = normalizeHimalayas({ jobs: [{ ...payload.jobs[0], locationRestrictions: [] }] });
     expect(job!.location).toBe('Worldwide');
+  });
+
+  describe('fetchHimalayas', () => {
+    afterEach(() => {
+      vi.useRealTimers();
+      vi.unstubAllGlobals();
+    });
+    const cfg = { search_terms: ['frontend', 'react'], max_pages_per_term: 3 };
+    const page = (n: number) => ({ jobs: [{ ...payload.jobs[0], guid: `https://himalayas.app/companies/acme/jobs/${n}` }] });
+    const json = (body: unknown) => new Response(JSON.stringify(body), { status: 200 });
+    const tooMany = () => new Response('', { status: 429 });
+
+    async function run(responses: Array<() => Response>) {
+      vi.useFakeTimers();
+      const fetchMock = vi.fn(async () => (responses.shift() ?? tooMany)());
+      vi.stubGlobal('fetch', fetchMock);
+      const done = fetchHimalayas(cfg, 0, 0);
+      await vi.runAllTimersAsync();
+      return { result: await done, calls: fetchMock.mock.calls.length };
+    }
+
+    it('tenta de novo depois de 429 e completa a busca', async () => {
+      const { result, calls } = await run([tooMany, tooMany, () => json(page(1)), () => json(page(2))]);
+      expect(result.error).toBeNull();
+      expect(result.jobs.map((j) => j.id)).toEqual(['himalayas:acme/1', 'himalayas:acme/2']);
+      expect(calls).toBe(4);
+    });
+
+    it('429 persistente devolve o que já tinha coletado, com o erro', async () => {
+      const { result, calls } = await run([() => json(page(1))]);
+      expect(result.error).toBe('http_429');
+      expect(result.jobs.map((j) => j.id)).toEqual(['himalayas:acme/1']);
+      expect(calls).toBe(1 + 5);
+    });
   });
 });
 
