@@ -16,5 +16,17 @@
     "ats": "lever",
     "id": "sprinterhealthhttps",
     "first_seen_at": "2026-11-12T13:48:49.568Z"
+  },
+  {
+    "name": "Dun & Bradstreet",
+    "ats": "lever",
+    "id": "dnb",
+    "first_seen_at": "2026-11-26T10:17:54.292Z"
+  },
+  {
+    "name": "Ethena",
+    "ats": "lever",
+    "id": "ethena",
+    "first_seen_at": "2026-11-26T10:17:54.292Z"
   }
 ]
