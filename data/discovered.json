@@ -28,5 +28,11 @@
     "ats": "lever",
     "id": "ethena",
     "first_seen_at": "2026-11-26T10:17:54.292Z"
+  },
+  {
+    "name": "Welo Data",
+    "ats": "lever",
+    "id": "weloglobal.",
+    "first_seen_at": "2026-11-27T10:17:50.257Z"
   }
 ]
